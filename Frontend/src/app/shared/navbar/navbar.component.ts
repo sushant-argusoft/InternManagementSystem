@@ -12,6 +12,7 @@ constructor(private router : Router,private route: ActivatedRoute){}
   ngOnInit(): void {
     this.header = this.route.snapshot.routeConfig.path;
     this.header = this.header.charAt(0).toUpperCase()+ this.header.slice(1);    
+    console.log(window.innerWidth);
   }
 sidebarToggle(){}
 
