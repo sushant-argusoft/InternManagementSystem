@@ -12,6 +12,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './admin/dashboard/table/table.component';
 import { TableModule } from 'primeng/table'
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -30,7 +31,8 @@ import { TableModule } from 'primeng/table'
     BrowserAnimationsModule,
     AppRoutingModule,
     NgbModule,
-    TableModule
+    TableModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
