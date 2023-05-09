@@ -9,18 +9,26 @@ import { SidebarDirective } from './shared/sidebar.directive';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableComponent } from './admin/dashboard/table/table.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     SidebarDirective,
     HeaderComponent,
-    NavbarComponent
+    NavbarComponent,
+    TableComponent,
+   
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
