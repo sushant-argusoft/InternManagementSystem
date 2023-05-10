@@ -3,10 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AppComponent } from './app.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
-  {path: '' , redirectTo:'/admin',pathMatch: 'full'},
-  {path:'admin', component: AppComponent, children:[
+  
+  {path:'admin', component: AdminComponent, children:[
     {path:'dashboard' ,component: DashboardComponent}  
     ]}
 ];

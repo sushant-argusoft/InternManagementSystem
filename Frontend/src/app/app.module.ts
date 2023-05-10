@@ -13,6 +13,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TableComponent } from './admin/dashboard/table/table.component';
 import { TableModule } from 'primeng/table'
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './admin/admin.component';
 
 
 
@@ -24,6 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     NavbarComponent,
     TableComponent,
+    LoginComponent,
+    AdminComponent,
    
   ],
   imports: [
@@ -32,7 +37,9 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     NgbModule,
     TableModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
