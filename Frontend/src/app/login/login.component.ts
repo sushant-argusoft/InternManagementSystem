@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       } else {
           alert("Authentication failed.")
       }
-    });
+    },error=>console.log("error ",error.message));
 }
 
 }
