@@ -1,24 +1,22 @@
 <div class=" card">
     <div class="card-header card-header-success card-header-icon">
       <div class="card-icon"><i class="bx bx-globe"></i></div>
-      <h4 class="card-title">Global Sales by Top Locations</h4>
+      <h4 class="card-title">Intern List</h4>
     </div>
 <div class="card-body">
-   <p-table [value] ="product" [tableStyle]="{'min-width':'50rem'}">
+   <p-table [value] ="interns" [tableStyle]="{'min-width':'50rem'}">
     <ng-template pTemplate="header">
       <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
+          <th *ngFor = "let cat of category;let i = index">{{cat}}</th>
+          
       </tr>
   </ng-template>
-  <ng-template pTemplate="body" let-product>
+  <ng-template pTemplate="body" let-intern>
       <tr>
-          <td>{{ product.code }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.quantity }}</td>
+          <td>{{ intern.Id }}</td>
+          <td>{{ intern.Name }}</td>
+          <td>{{ intern.Mentor }}</td>
+          <td>{{ intern.courses }}</td>
       </tr>
   </ng-template>
    </p-table>

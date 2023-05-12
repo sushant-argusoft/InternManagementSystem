@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-
-@RequestMapping("/company")
+@CrossOrigin(origins = "*")
+@RequestMapping("/company/api")
 public class CompanyController {
 
     private CompanyService companyService;

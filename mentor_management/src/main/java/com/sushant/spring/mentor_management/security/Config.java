@@ -38,7 +38,7 @@ public class Config {
                     response.sendError(HttpServletResponse.SC_UNAUTHORIZED,ex.getMessage());
                 }
         ).and();
-        http.securityMatcher("/company/**").authorizeHttpRequests(
+        http.securityMatcher("/company/api/**").authorizeHttpRequests(
                 authorize->authorize.anyRequest().authenticated()
         ).httpBasic(withDefaults());
         http.addFilterBefore(sessionFilter, UsernamePasswordAuthenticationFilter.class);

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import axios from "axios"
 
 @Component({
   selector: 'app-login',
@@ -20,24 +21,35 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  login() {
-    let url = '/company/login';
-    this.http.post<any>(url, {
-      username: this.model.username,
-      password: this.model.password
-    }).subscribe(res => {
-      if (res) {
-        this.sessionId = res.sessionId;
+//   login() {
+//     let url = 'http://localhost:8080/company/login';
+//     this.http.post<any>(url, {
+//       username: this.model.username,
+//       password: this.model.password
+//     }).subscribe(res => {
+//       if (res) {
+//         this.sessionId = res.sessionId;
           
-        sessionStorage.setItem(
-          'token',
-          this.sessionId
-        );
-        this.router.navigate(['']);
-      } else {
-          alert("Authentication failed.")
-      }
-    },error=>console.log("error ",error.message));
-}
+//         sessionStorage.setItem(
+//           'token',
+//           this.sessionId
+//         );
+//         this.router.navigate(['']);
+//       } else {
+//           alert("Authentication failed.")
+//       }
+//     },error=>console.log("error ",error.message));
+// }
 
+async login(){
+  try{
+  const data=await axios.post("http://localhost:8080/company/login",{username:this.model.username,password:this.model.password})
+  console.log(data)
+  sessionStorage.setItem("sessionId",data.data.sessionId)
+  this.router.navigate(['../admin'])
+  }
+  catch(err){
+    console.log(err.message)
+  }
+}
 }
