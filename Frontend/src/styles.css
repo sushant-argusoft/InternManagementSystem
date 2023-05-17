@@ -5,4 +5,34 @@ html{
 }
 body {
     font-family: var(--font-family);
+    
+}
+.card{
+    border: none;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    
+}
+.card-icon{
+    border-radius: 3px;
+ 
+    padding: 15px;
+    margin-top: -20px;
+    margin-right: 15px;
+    float: left;
+}
+.card .card-header {
+    z-index: 3!important;
+    border-bottom: none;
+    background-color: #fff;
+}
+.card .card-header.card-header-icon .card-title, .card .card-header.card-header-text .card-title {
+    margin-top: 15px;
+    color: #3c4858;
+}
+.bg-success{
+  background-color:  #56af5a !important;
+}
+.card .bx{
+    font-size: 22px;
+    color: #fff;
 }

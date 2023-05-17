@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
 async login(){
   try{
   const data=await axios.post("http://localhost:8080/company/login",{username:this.model.username,password:this.model.password})
-  console.log(data)
+  
   sessionStorage.setItem("sessionId",data.data.sessionId)
   this.router.navigate(['../admin'])
   }
