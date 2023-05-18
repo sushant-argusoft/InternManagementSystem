@@ -43,25 +43,42 @@
     <div class="col-3">
         <div class="card"> <div class="card-header card-header-success card-header-icon" >
       <div class="card-icon" [style]="{ 'backgroundColor': '#fd970f'}"><i class="bx bx-wallet" ></i></div>
-      <h4 class="card-title">Revenue</h4>
+      <div  style="float:right;" >
+        <h6 class="card-title mr-2" style="text-align: end;">Revenue</h6>
+        
+        <div class="p-2" style="font-size: 26px;"> {{"$"+revenue}} </div>   
+    </div>
     </div></div>
     </div>
     <div class="col-3">
-        <div class="card"> <div class="card-header card-header-success card-header-icon" >
+        <div class="card" > <div class="card-header card-header-success card-header-icon" >
       <div class="card-icon" [style]="{ 'backgroundColor': '#e32f6e'}"><i class="bx bx-list-ul" ></i></div>
-      <h4 class="card-title">Employees</h4>
+     
+      <div  style="float:right;" >
+        <h6 class="card-title mr-2" style="text-align: end;">Employees</h6>
+        
+        <div class="p-2" style="font-size: 26px;"> {{employeeCount}} </div>   
+    </div>
     </div></div>
     </div>
     <div class="col-3">
         <div class="card"> <div class="card-header card-header-success card-header-icon" >
       <div class="card-icon" [style]="{ 'backgroundColor': '#56af5a'}"><i class="bx bx-id-card" ></i></div>
-      <h4 class="card-title">Interns</h4>
+      <div  style="float:right;" >
+        <h6 class="card-title mr-2" style="text-align: end;">Interns</h6>
+        
+        <div class="p-2" style="font-size: 26px;"> {{internCount}} </div>   
+    </div>
     </div></div>
     </div>
     <div class="col-3">
         <div class="card"> <div class="card-header card-header-success card-header-icon" >
       <div class="card-icon" [style]="{ 'backgroundColor': '#1ec0d5'}"><i class="bx bx-book-content" ></i></div>
-      <h4 class="card-title">Courses</h4>
+      <div  style="float:right;" >
+        <h6 class="card-title mr-2" style="text-align: end;">Courses</h6>
+        
+        <div class="p-2" style="font-size: 26px;"> {{internCount}} </div>   
+    </div>
     </div></div>
     </div>
 </div>
