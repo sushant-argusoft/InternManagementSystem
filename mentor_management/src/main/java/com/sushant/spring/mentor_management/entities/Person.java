@@ -35,6 +35,12 @@ public class Person  {
     @NotBlank(message = "Date of Birth  is mandatory")
     @Column(name = "date_of_birth")
     private  String dateOfBirth;
+    @Column(name="email", nullable = false, updatable = false, unique=true)
+    private String email;
+    @Column(name="password", nullable = false)
+    private String password;
+    @Column(name="role", nullable = false)
+    private String role;
 
 
     @ManyToOne(cascade = CascadeType.ALL)

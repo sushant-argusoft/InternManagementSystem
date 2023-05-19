@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +41,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getCompany")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Company> getAllCompany() {
         return companyService.getAll();
     }
@@ -50,6 +52,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getPerson")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Person> getAllPerson() {
         return personService.getAll();
     }
@@ -60,16 +63,19 @@ public class CompanyController {
     }
 
     @GetMapping("/getMentor")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Mentor> getAllMentors() {
         return mentorService.getAllMentor();
     }
 
     @GetMapping("/getIntern/{getId}")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public Intern getInternById(@PathVariable int getId) {
         return internService.getIntern(getId);
     }
 
     @GetMapping("/getIntern")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Intern> getAllInterns() {
         return internService.getAllIntern();
     }
