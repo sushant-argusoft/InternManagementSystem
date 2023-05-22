@@ -20,6 +20,7 @@ import { RequestInterceptor } from './request.interceptor';
 import { ProgressBarModule } from 'primeng/progressbar';
 // For dynamic progressbar demo
 import { ToastModule } from 'primeng/toast';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 
 
@@ -33,6 +34,7 @@ import { ToastModule } from 'primeng/toast';
     TableComponent,
     LoginComponent,
     AdminComponent,
+    DropdownDirective,
    
   ],
   imports: [

@@ -46,6 +46,7 @@ async login(){
   const data=await axios.post("http://localhost:8080/company/login",{username:this.model.username,password:this.model.password})
   
   sessionStorage.setItem("sessionId",data.data.sessionId)
+
   this.router.navigate(['../admin'])
   }
   catch(err){
