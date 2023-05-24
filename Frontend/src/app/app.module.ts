@@ -21,6 +21,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 // For dynamic progressbar demo
 import { ToastModule } from 'primeng/toast';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { CoursesComponent } from './admin/courses/courses.component';
 
 
 
@@ -35,6 +36,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     LoginComponent,
     AdminComponent,
     DropdownDirective,
+    CoursesComponent,
    
   ],
   imports: [
@@ -49,6 +51,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     ProgressBarModule,
     ToastModule
   ],
+  
   providers: [{provide:HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })

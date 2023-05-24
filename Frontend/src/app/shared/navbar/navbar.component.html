@@ -1,5 +1,5 @@
 <nav class="navbar justify-content-between">
-    <a class="navbar-brand">{{header}}</a>
+    <a class="navbar-brand" >{{header}}</a>
     <form class="d-flex form-inline">
         <input class="form-control mx-2 mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn-pri mx-2 my-2" type="submit">
@@ -10,4 +10,20 @@
         <button class=" btn-pri mx-2 my-2" type="submit">
             <i class="bx bx-user"></i></button>
     </form>
+
+
+ 
 </nav>
+<div class="theme-switch-wrapper d-flex">
+    <div class=" p-2 " style="font-size: 16px;">Dark Mode:</div> 
+    <label class="theme-switch" for="checkbox">
+   
+        <input (change)="switchTheme($event)" type="checkbox" id="checkbox"  [checked]="check"/>
+        <div class="slider round"></div>
+    </label>
+    
+</div>
+
+
+
+  

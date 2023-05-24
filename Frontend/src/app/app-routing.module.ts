@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './authentication.guard';
+import { CoursesComponent } from './admin/courses/courses.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
-  {path:'login',component:LoginComponent},
+  {path:'login',component:LoginComponent,canActivate:[AuthenticationGuard]},
   {path:'admin', component: AdminComponent, children:[
-    {path:'dashboard' ,component: DashboardComponent}  
+    {path:'dashboard' ,component: DashboardComponent} ,
+    {path:'courses' ,component: CoursesComponent}  
     ],canActivate:[AuthenticationGuard]}
 ];
 

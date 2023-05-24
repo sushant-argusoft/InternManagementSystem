@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import axios from "axios"
+import { AppService } from '../app.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,16 @@ export class LoginComponent implements OnInit {
   sessionId: any = "";
 
   constructor(
-      private router: Router,
-      private http: HttpClient
+    private appService : AppService
+   
   ) { }
 
   ngOnInit(): void {
-  }
 
+  }
+login(){
+  this.appService.login(this.model);
+}
 //   login() {
 //     let url = 'http://localhost:8080/company/login';
 //     this.http.post<any>(url, {
@@ -41,16 +45,5 @@ export class LoginComponent implements OnInit {
 //     },error=>console.log("error ",error.message));
 // }
 
-async login(){
-  try{
-  const data=await axios.post("http://localhost:8080/company/login",{username:this.model.username,password:this.model.password})
-  
-  sessionStorage.setItem("sessionId",data.data.sessionId)
 
-  this.router.navigate(['../admin'])
-  }
-  catch(err){
-    console.log(err.message)
-  }
-}
 }
