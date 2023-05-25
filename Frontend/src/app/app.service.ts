@@ -28,6 +28,8 @@ export class AppService {
     }
     logout(){
       sessionStorage.clear();
+  
+      
 
       this.router.navigate(['../login'])
 

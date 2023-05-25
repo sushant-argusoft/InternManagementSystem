@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import axios from "axios"
+import { Component, ElementRef, OnInit } from '@angular/core';
+
 import { AppService } from '../app.service';
 
 @Component({
@@ -20,7 +19,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+     
+    document.documentElement.setAttribute('data-theme', 'light');
+    this.appService.isChecked.next(false);
+    
+     
   }
 login(){
   this.appService.login(this.model);

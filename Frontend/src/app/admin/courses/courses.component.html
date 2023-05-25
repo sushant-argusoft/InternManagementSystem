@@ -1,49 +1,17 @@
 <app-navbar></app-navbar>
 <div class="my-5 p-3">
-    <div class="row mt-5">
-        <div class="col-3">
+ 
+    <div  *ngFor="let r of [].constructor(row);let i = index" class="row mt-5">
+        <div    *ngFor="let c of [].constructor(getColumn(i))"class="col-3">
             <div class="card"> <div class="card-header card-header-success card-header-icon" >
-          <div class="card-icon" [style]="{ 'backgroundColor': '#fd970f'}"><i class="bx bx-wallet" ></i></div>
-          <div  style="float:right;" >
-            <h6 class="card-title mr-2" style="text-align: end;">Revenue</h6>
-            
-            <div class="p-2" style="font-size: 26px;">  </div>   
-        </div>
-        </div></div>
-        </div>
-        <div class="col-3">
-            <div class="card" > <div class="card-header card-header-success card-header-icon" >
-          <div class="card-icon" [style]="{ 'backgroundColor': '#e32f6e'}"><i class="bx bx-list-ul" ></i></div>
          
           <div  style="float:right;" >
-            <h6 class="card-title mr-2" style="text-align: end;">Employees</h6>
+           
             
-            <div class="p-2" style="font-size: 26px;"> </div>   
-        </div>
-        </div></div>
-        </div>
-        <div class="col-3">
-            <div class="card"> <div class="card-header card-header-success card-header-icon" >
-          <div class="card-icon" [style]="{ 'backgroundColor': '#56af5a'}"><i class="bx bx-id-card" ></i></div>
-          <div  style="float:right;" >
-            <h6 class="card-title mr-2" style="text-align: end;">Interns</h6>
-            
-            <div class="p-2" style="font-size: 26px;"></div>   
-        </div>
-        </div></div>
-        </div>
-        <div class="col-3">
-            <div class="card"> <div class="card-header card-header-success card-header-icon" >
-          <div class="card-icon" [style]="{ 'backgroundColor': '#1ec0d5'}"><i class="bx bx-book-content" ></i></div>
-          <div  style="float:right;" >
-            <h6 class="card-title mr-2" style="text-align: end;">Courses</h6>
-            
-            <div class="p-2" style="font-size: 26px;">  </div>   
+            <div class="p-2" style="font-size: 20px;"> {{courses[increaseIndex()]['courseName']}} </div>   
         </div>
         </div></div>
         </div>
     </div>
-
-
 
 </div>
