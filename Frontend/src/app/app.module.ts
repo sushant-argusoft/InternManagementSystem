@@ -22,6 +22,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { CoursesComponent } from './admin/courses/courses.component';
+import { EditFormComponent } from './admin/courses/edit-form/edit-form.component';
 
 
 
@@ -38,6 +39,7 @@ import { CoursesComponent } from './admin/courses/courses.component';
     AdminComponent,
     DropdownDirective,
     CoursesComponent,
+    EditFormComponent,
    
   ],
   imports: [
