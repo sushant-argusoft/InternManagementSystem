@@ -43,6 +43,7 @@ public class CourseServiceImpl implements CourseService{
 //        System.out.println(interns);
         Course course = new Course(courseDTO.getCourseId(),
                 courseDTO.getCourseName(),
+                courseDTO.getImageUrl(),
                 categoryService.getCategory(courseDTO.getcId()),
                 companyService.get(courseDTO.getCompanyId()),
                 interns) ;

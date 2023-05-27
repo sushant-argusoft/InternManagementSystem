@@ -31,14 +31,15 @@
                     <div style="display: flex;justify-content: space-between;">
                      <a class="link"> <span class="card-subtitle ">Interns:</span>  {{getSize(i)}}</a>
                     <a  class="btn mr-2"><i class="bx bx-minus-circle"></i> </a>
-                    <a class="btn "><i class="bx bx-edit-alt"></i></a>
+                    <a class="btn" (click)="onClick(i)"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bx bx-edit-alt"></i></a>
                 </div>
         </div>
 
     </div>
-
+    <router-outlet></router-outlet>
   </div>
 </div>
+
 
 
 

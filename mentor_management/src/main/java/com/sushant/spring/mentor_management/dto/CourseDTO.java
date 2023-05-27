@@ -11,6 +11,8 @@ public class CourseDTO {
    @NotBlank(message = "please enter valid course name")
    private String courseName;
    @NotNull
+   private String imageUrl;
+   @NotNull
 
    private int cId;
    @NotNull
@@ -19,12 +21,16 @@ public class CourseDTO {
 
 
 
-   public CourseDTO(int courseId, String courseName, int cId, int companyId) {
+   public CourseDTO(int courseId, String courseName, int cId, int companyId,String imageUrl) {
       this.courseId = courseId;
       this.courseName = courseName;
       this.cId = cId;
       this.companyId = companyId;
+      this.imageUrl = imageUrl;
 
+   }
+   public  String getImageUrl(){
+      return imageUrl;
    }
 
    public int getCourseId() {

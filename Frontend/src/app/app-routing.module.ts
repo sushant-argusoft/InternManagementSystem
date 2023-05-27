@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './authentication.guard';
 import { CoursesComponent } from './admin/courses/courses.component';
 import { ResolverServiceResolver } from './service/resolver-service.resolver';
+import { EditFormComponent } from './admin/courses/edit-form/edit-form.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login',pathMatch:'full'},
@@ -16,7 +17,7 @@ const routes: Routes = [
     {path:'dashboard' ,component: DashboardComponent} ,
     {path:'courses' ,component: CoursesComponent,resolve:{
       data:ResolverServiceResolver
-    }}  
+    }, children:[{path:'edit',component:EditFormComponent}]}  
     ],canActivate:[AuthenticationGuard]}
 ];
 

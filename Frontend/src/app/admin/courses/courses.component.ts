@@ -1,5 +1,5 @@
-import { Component,OnInit} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component,ElementRef,OnInit, ViewChild} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 
 @Component({
@@ -8,11 +8,14 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./courses.component.css']
 })
 export class CoursesComponent implements OnInit{
+  edit= false;
 
 size:number;
 courses:[];
+ind=-1;
 
-constructor(private appService: AppService, private route : ActivatedRoute){
+
+constructor(private appService: AppService, private route : ActivatedRoute,private router : Router){
 
 }
   
@@ -29,6 +32,16 @@ ngOnInit(){
   getSize(i){
     
     return (<[]>this.courses[i]['interns']).length;
+  }
+  onClick(i){
+    this.ind = i;
+    this.edit = true;
+   this.router.navigate(['edit'],{relativeTo: this.route})
+    
+    
+    // this.foobar.nativeElement.inpCourse = this.courses[i];
+    
+    // console.log(this.ind);
   }
   // setCourses(res){
   //   this.courses = res;

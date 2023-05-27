@@ -27,6 +27,9 @@ public class Course {
     @NotBlank(message = "Course name  is mandatory")
     @Column(name = "course_name")
     private String courseName;
+    @NotNull
+    @Column
+    private String imageUrl;
 
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,7 +40,8 @@ public class Course {
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     Company company;
 
-    @JsonIgnoreProperties("courses")
+    @JsonIgnoreProperties({"courses","mentor"})
+
     @ManyToMany()
     @JoinTable(
             name = "course_enrolled",
