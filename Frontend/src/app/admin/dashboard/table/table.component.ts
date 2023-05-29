@@ -22,7 +22,7 @@ export class TableComponent implements OnInit{
   constructor(private http:HttpClient,private appService : AppService){}
     ngOnInit() {
     
-     this.appService.setIntern().subscribe((resp)=>{
+     this.appService.getIntern().subscribe((resp)=>{
         this.data = resp;
         console.log(this.data);
         this.setdata();

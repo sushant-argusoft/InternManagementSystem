@@ -1,6 +1,7 @@
 import { Component,ElementRef,OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import { CourseService } from './course.service';
 
 @Component({
   selector: 'app-courses',
@@ -15,7 +16,7 @@ courses:[];
 ind=-1;
 
 
-constructor(private appService: AppService, private route : ActivatedRoute,private router : Router){
+constructor(private appService: AppService, private route : ActivatedRoute,private router : Router, private courseService : CourseService){
 
 }
   
@@ -36,7 +37,9 @@ ngOnInit(){
   onClick(i){
     this.ind = i;
     this.edit = true;
+    this.courseService.course.next(this.courses[i]);
    this.router.navigate(['edit'],{relativeTo: this.route})
+  
     
     
     // this.foobar.nativeElement.inpCourse = this.courses[i];
@@ -58,5 +61,14 @@ ngOnInit(){
   //   return 4;
 
   // }
+  // activate(comp){
+  //   comp.inpCourse = this.courses[this.ind];
+  //   console.log(this.ind);
+  //   console.log(comp);
 
+  // }
+  internDetails(){
+    
+  }
+  
 }

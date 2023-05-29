@@ -1,6 +1,7 @@
-import { Component, HostBinding, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -8,6 +9,9 @@ import { ActivatedRoute, Route, Router } from '@angular/router';
   styleUrls: ['./edit-form.component.css']
 })
 export class EditFormComponent implements OnInit {
+  @ViewChild('modalContent') modalContent: ElementRef;
+  formGroup:FormGroup;
+  isSubmitted= false;
   /*
   category
 : 
@@ -28,13 +32,20 @@ interns
 : 
 (2) [{…}, {…}]
   */ 
- constructor(private router : Router , private route: ActivatedRoute){}
-@Input() inpCourse;
+ constructor(private courseService: CourseService, private router : Router , private route: ActivatedRoute){}
 
-formGroup:FormGroup;
-isSubmitted= false;
+// @HostListener('document: click' , ['$event']) routeBack(event:Event){
+//   console.log(this.modalContent.nativeElement);
+  
+// if(!this.modalContent.nativeElement.contains(event.target)){
+//   this.close();
+// }
+// }
+
+
 ngOnInit(): void {
-  console.log(this.inpCourse);
+
+
   
 //let name =this.inpCourse["courseName"];
 
@@ -44,23 +55,38 @@ let category='';
 
 let imageUrl='';
 let interns:[];
+this.courseService.course.subscribe((res)=>{
+  console.log(res);
+  courseName = res["courseName"];
+  category = res["category"]["categoryName"];
+  imageUrl= res["imageUrl"];
+  console.log(category);
+  
+});
 
 
   this.formGroup = new FormGroup({
-    'name': new FormControl(name, Validators.required),
+    
     'courseName': new FormControl(courseName, Validators.required),
     'imagePath': new FormControl(imageUrl,Validators.required),
+
     'category': new FormControl(category,Validators.required),
-    'interns': new FormControl(interns,Validators.required),
+    
     
    });
  }
+ 
 
  onSubmit(){
    this.isSubmitted = true;
  }
  close(){
  this.router.navigate(["../"],{relativeTo: this.route})
+ }
+ toggler(e){
+   if(!this.modalContent.nativeElement.contains(e.target)){
+    this.close();
+   }
  }
 
 }

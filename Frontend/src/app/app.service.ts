@@ -34,7 +34,7 @@ export class AppService {
       this.router.navigate(['../login'])
 
     }
-    setIntern(){
+    getIntern(){
        return this.http.get<Intern[]>('http://localhost:8080/company/api/getIntern')
             
     //    console.log("Set",this.intern);
