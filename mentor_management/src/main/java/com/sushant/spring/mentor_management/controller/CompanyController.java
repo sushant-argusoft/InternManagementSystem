@@ -27,6 +27,7 @@ public class CompanyController {
     private InternService internService;
 
     private CourseService courseService;
+    private CategoryService categoryService;
 
     // private CategoryService categoryService;
     @Autowired
@@ -119,6 +120,11 @@ public class CompanyController {
     public ResponseEntity<String> editIntern(@PathVariable int id, @RequestBody Intern intern) {
         internService.updateIntern(id, intern);
         return new ResponseEntity<>("Data update", HttpStatus.OK);
+    }
+
+    @GetMapping("/getCategory")
+    public List<Category> getAllCategory(){
+        return categoryService.getAll();
     }
 
 }

@@ -28,7 +28,7 @@ public class Course {
     @Column(name = "course_name")
     private String courseName;
     @NotNull
-    @Column
+    @Column(name = "image_url")
     private String imageUrl;
 
 
@@ -45,7 +45,7 @@ public class Course {
     @ManyToMany()
     @JoinTable(
             name = "course_enrolled",
-            joinColumns = @JoinColumn(name = "intern_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "intern_id"))
     List<Intern> interns;
 }
