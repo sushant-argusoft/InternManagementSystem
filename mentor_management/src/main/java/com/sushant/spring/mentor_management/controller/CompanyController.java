@@ -32,13 +32,13 @@ public class CompanyController {
     // private CategoryService categoryService;
     @Autowired
     public CompanyController(CompanyService companyService, PersonService personService, MentorService mentorService,
-            InternService internService, CourseService courseService) {
+            InternService internService, CourseService courseService, CategoryService categoryService) {
         this.companyService = companyService;
         this.personService = personService;
         this.mentorService = mentorService;
         this.internService = internService;
         this.courseService = courseService;
-        // this.categoryService = categoryService;
+         this.categoryService = categoryService;
     }
 
     @GetMapping("/getCompany")

@@ -2,6 +2,7 @@ import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewCh
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CourseService } from '../course.service';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'app-edit-form',
@@ -32,7 +33,7 @@ interns
 : 
 (2) [{…}, {…}]
   */ 
- constructor(private courseService: CourseService, private router : Router , private route: ActivatedRoute){}
+ constructor(private courseService: CourseService,private appService:AppService, private router : Router , private route: ActivatedRoute){}
 
 // @HostListener('document: click' , ['$event']) routeBack(event:Event){
 //   console.log(this.modalContent.nativeElement);
@@ -49,9 +50,13 @@ ngOnInit(): void {
   
 //let name =this.inpCourse["courseName"];
 
-let courseName='';
-let category='';
 
+let courseName='';
+let category;
+this.appService.getCategory().subscribe(res=>{
+  category = res;
+})
+console.log(category);
 
 let imageUrl='';
 let interns:[];

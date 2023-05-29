@@ -44,6 +44,10 @@ export class AppService {
     getCourses(){
       return this.http.get<[]>('http://localhost:8080/company/api/getCourse')
     }
+    getCategory(){
+      return this.http.get<[]>('http://localhost:8080/company/api/getCategory')
+
+    }
   
 
   
