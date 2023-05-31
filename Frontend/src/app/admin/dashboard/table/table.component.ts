@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-import { AppService } from 'src/app/app.service';
+import { AppService } from 'src/app/service/app.service';
 import Intern from 'src/app/model/intern.model';
 
 @Component({

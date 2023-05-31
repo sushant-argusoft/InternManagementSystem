@@ -1,97 +1,105 @@
-import { Component, ElementRef, HostBinding, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { CourseService } from '../course.service';
-import { AppService } from 'src/app/app.service';
+import { CourseService } from '../../../service/course.service';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
-  styleUrls: ['./edit-form.component.css']
+  styleUrls: ['./edit-form.component.css'],
 })
-export class EditFormComponent implements OnInit {
-  @ViewChild('modalContent') modalContent: ElementRef;
-  formGroup:FormGroup;
-  isSubmitted= false;
-  /*
-  category
-: 
-{id: 1, categoryName: 'Database'}
-company
-: 
-{id: 1, name: 'Argusoft', address: {…}}
-courseName
-: 
-"Realtional Database Design"
-id
-: 
-1
-imageUrl
-: 
-"https://png.pngtree.com/png-clipart/20210308/original/pngtree-online-course-online-teaching-vector-png-image_5780237.jpg"
-interns
-: 
-(2) [{…}, {…}]
-  */ 
- constructor(private courseService: CourseService,private appService:AppService, private router : Router , private route: ActivatedRoute){}
+export class EditFormComponent implements OnInit,OnDestroy{
+  formGroup: FormGroup;
+  isSubmitted = false;
+  allCatogories;
+  courseName: '';
+  category: '';
+  imageUrl: '';
+  course;
+  loading: boolean = false;
+  @ViewChild('modalContent')modalClose:ElementRef;
 
-// @HostListener('document: click' , ['$event']) routeBack(event:Event){
-//   console.log(this.modalContent.nativeElement);
-  
-// if(!this.modalContent.nativeElement.contains(event.target)){
-//   this.close();
-// }
-// }
-
-
-ngOnInit(): void {
-
-
-  
-//let name =this.inpCourse["courseName"];
-
-
-let courseName='';
-let category;
-this.appService.getCategory().subscribe(res=>{
-  category = res;
-})
-console.log(category);
-
-let imageUrl='';
-let interns:[];
-this.courseService.course.subscribe((res)=>{
-  console.log(res);
-  courseName = res["courseName"];
-  category = res["category"]["categoryName"];
-  imageUrl= res["imageUrl"];
-  console.log(category);
-  
-});
-
-
-  this.formGroup = new FormGroup({
+  constructor(
+    private courseService: CourseService,
+    private appService: AppService
+  ) {}
+  ngOnDestroy(): void {
+    this.courseService.course.unsubscribe();
     
-    'courseName': new FormControl(courseName, Validators.required),
-    'imagePath': new FormControl(imageUrl,Validators.required),
+  }
 
-    'category': new FormControl(category,Validators.required),
-    
-    
-   });
- }
- 
+  ngOnInit(): void {
+   
+    this.appService.getCategory().subscribe((res) => {
+      this.allCatogories = res;
+    });
 
- onSubmit(){
-   this.isSubmitted = true;
- }
- close(){
- this.router.navigate(["../"],{relativeTo: this.route})
- }
- toggler(e){
-   if(!this.modalContent.nativeElement.contains(e.target)){
-    this.close();
-   }
- }
+    this.courseService.course.subscribe((res) => {
+      this.course = res;
+      console.log(res['courseName']);
+      this.setData(res);
+    });
+    this.formGroup = new FormGroup({
+      courseName: new FormControl('', Validators.required),
+      imagePath: new FormControl('', Validators.required),
+      category: new FormControl('', Validators.required),
+    });
+  }
 
+  onSubmit() {
+    this.loading = true;
+    const respCourseName = this.formGroup.get('courseName').value;
+    const respImageUrl = this.formGroup.get('imagePath').value;
+    const tempCategory = this.formGroup
+      .get('category')
+      .value.slice(this.formGroup.get('category').value.indexOf(':') + 1)
+      .trim();
+    const respCategory = this.allCatogories.find(
+      (el) => el.categoryName === tempCategory
+    );
+
+    this.course.courseName = respCourseName;
+    this.course.imageUrl = respImageUrl;
+    this.course.category = respCategory;
+
+    console.log(this.course);
+    const sendObj = {
+      courseId: this.course.id,
+      courseName: this.course.courseName,
+      imageUrl: this.course.imageUrl,
+      cId: this.course.category.id,
+      companyId: this.course.company.id,
+      interns: this.course.interns.map((el) => el.internId),
+    };
+    console.log(sendObj);
+
+    this.courseService.postCourse(sendObj).subscribe(
+      (res) => {
+        this.loading = false;
+        this.isSubmitted = true;
+      },
+      (err) => {
+        this.isSubmitted = false;
+      }
+    );
+  }
+  close(){
+    this.isSubmitted = false;
+  }
+  modalCloseFn(e){
+    if(this.modalClose.nativeElement.contains(e.target)){
+      this.close();
+    }
+  }
+
+  setData(res) {
+    this.formGroup.setValue({
+      courseName: res['courseName'],
+      imagePath: res['imageUrl'],
+      category: res['category']['categoryName'],
+    });
+  }
+  changeCategory(e) {
+    this.formGroup.get('category').setValue(e.target.value, { onlySelf: true });
+  }
 }

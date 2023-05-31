@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
-import Intern from "./model/intern.model";
+import Intern from "../model/intern.model";
 import { BehaviorSubject } from "rxjs";
 import axios from "axios";
 import { Router } from "@angular/router";
@@ -9,6 +9,8 @@ import { Router } from "@angular/router";
 export class AppService {
   
     isChecked: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    searchWord: BehaviorSubject<string> = new BehaviorSubject<string>('');
+    BASIC_URL = 'http://localhost:8080/company/';
 
 
     constructor (private http : HttpClient, private router: Router){
@@ -16,7 +18,7 @@ export class AppService {
     }
     async login(model){
       try{
-      const data=await axios.post("http://localhost:8080/company/login",{username:model.username,password:model.password})
+      const data=await axios.post(this.BASIC_URL + "login",{username:model.username,password:model.password})
       
       sessionStorage.setItem("sessionId",data.data.sessionId)
     
@@ -35,17 +37,17 @@ export class AppService {
 
     }
     getIntern(){
-       return this.http.get<Intern[]>('http://localhost:8080/company/api/getIntern')
+       return this.http.get<Intern[]>(this.BASIC_URL+'api/getIntern')
             
     //    console.log("Set",this.intern);
        
     }
 
     getCourses(){
-      return this.http.get<[]>('http://localhost:8080/company/api/getCourse')
+      return this.http.get<[]>(this.BASIC_URL+'api/getCourse')
     }
     getCategory(){
-      return this.http.get<[]>('http://localhost:8080/company/api/getCategory')
+      return this.http.get<[]>(this.BASIC_URL+'api/getCategory')
 
     }
   

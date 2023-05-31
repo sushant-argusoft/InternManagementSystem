@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterStateSnapshot } from '@angular/router';
-import { AppService } from 'src/app/app.service';
+import { AppService } from 'src/app/service/app.service';
 
 @Component({
   selector: 'app-navbar',

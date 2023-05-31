@@ -1,23 +1,10 @@
 <app-navbar></app-navbar>
 <div class="my-5 p-3">
-  <!-- <div  *ngFor="let r of [].constructor(row);let i = index" class="row mt-5">
-        <div    *ngFor="let c of [].constructor(getColumn(i))"class="col-3">
-            <div class="card"> <div class="card-header card-header-success card-header-icon" >
-         
-          <div  style="float:right;" >
-           
-            
-            <div class="p-2" style="font-size: 20px;" *ngIf="courses"> {{i+" "+getColumn(i)}} </div>   
-        </div>
-        </div></div>
-        </div>
-    </div> -->
-
     <div class="row" >
         <div class="mb-3 mt-3 col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let course of courses;let i = index">
             <div class="card" >
                 <div class="card-header card-header-success card-header-icon" >
-                    <img [src]="course['imageUrl']" height="300" width="300" alt="">
+                    <img class="img-fluid img-thumbnail" [src]="course['imageUrl']"  alt="">
                         <h5 class=" card-title" >{{ course["courseName"] }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{course["category"]["categoryName"]}}</h6>
                         <div style="display: flex;justify-content: space-between;">
@@ -27,9 +14,9 @@
                         </div>
                  </div>
             </div>
-            <router-outlet></router-outlet>
+           
     </div>
-    
+    <app-edit-form></app-edit-form>
 </div>
 
 

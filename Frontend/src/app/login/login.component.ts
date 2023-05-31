@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit } from '@angular/core';
 
-import { AppService } from '../app.service';
+import { AppService } from '../service/app.service';
 
 @Component({
   selector: 'app-login',
