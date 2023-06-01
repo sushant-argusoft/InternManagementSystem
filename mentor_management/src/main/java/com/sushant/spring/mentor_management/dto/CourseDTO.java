@@ -3,6 +3,9 @@ package com.sushant.spring.mentor_management.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.util.List;
+
 @Data
 public class CourseDTO {
 
@@ -19,14 +22,28 @@ public class CourseDTO {
 
    private int companyId;
 
+   @NotNull
+   private List<Integer>  interns;
 
+   public void setImageUrl(String imageUrl) {
+      this.imageUrl = imageUrl;
+   }
 
-   public CourseDTO(int courseId, String courseName, int cId, int companyId,String imageUrl) {
+   public List<Integer> getInterns() {
+      return interns;
+   }
+
+   public void setInterns(List<Integer> interns) {
+      this.interns = interns;
+   }
+
+   public CourseDTO(int courseId, String courseName, int cId, int companyId, String imageUrl,List<Integer>interns) {
       this.courseId = courseId;
       this.courseName = courseName;
       this.cId = cId;
       this.companyId = companyId;
       this.imageUrl = imageUrl;
+      this.interns = interns;
 
    }
    public  String getImageUrl(){
@@ -67,3 +84,5 @@ public class CourseDTO {
 
 
 }
+
+

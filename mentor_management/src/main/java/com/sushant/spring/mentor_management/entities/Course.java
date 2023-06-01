@@ -32,17 +32,17 @@ public class Course {
     private String imageUrl;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "c_id", referencedColumnName = "c_id")
     Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     Company company;
 
     @JsonIgnoreProperties({"courses","mentor"})
 
-    @ManyToMany()
+    @ManyToMany(cascade= CascadeType.ALL)
     @JoinTable(
             name = "course_enrolled",
             joinColumns = @JoinColumn(name = "course_id"),

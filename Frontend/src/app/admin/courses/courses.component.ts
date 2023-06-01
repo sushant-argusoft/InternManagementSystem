@@ -10,10 +10,11 @@ import { CourseService } from '../../service/course.service';
 })
 export class CoursesComponent implements OnInit {
   edit = false;
-
+  interns = [];
   size: number;
   courses: [];
   ind = -1;
+  searchWord;
 
   constructor(
     private appService: AppService,
@@ -24,6 +25,9 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.courses = this.route.snapshot.data['data'];
+    this.appService.searchWordSub.subscribe((res) => {
+      this.searchWord = res;
+    });
   }
 
   getSize(i) {
@@ -34,5 +38,16 @@ export class CoursesComponent implements OnInit {
     this.edit = true;
     this.courseService.course.next(this.courses[i]);
   }
-  internDetails() {}
+  internDetails(i) {
+    this.interns = this.courses[i]['interns'];
+  }
+  delete(i) {
+    console.log(this.courses[i]['id']);
+    this.courseService.deleteCourse(this.courses[i]['id']).subscribe((res) => {
+      console.log(res),
+        (err) => {
+          console.log(err);
+        };
+    });
+  }
 }

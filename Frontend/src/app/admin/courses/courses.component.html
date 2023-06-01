@@ -1,15 +1,15 @@
 <app-navbar></app-navbar>
 <div class="my-5 p-3">
     <div class="row" >
-        <div class="mb-3 mt-3 col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let course of courses;let i = index">
+        <div class="mb-3 mt-3 col-xs-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let course of courses | filter: searchWord:'courseName';let i = index">
             <div class="card" >
                 <div class="card-header card-header-success card-header-icon" >
                     <img class="img-fluid img-thumbnail" [src]="course['imageUrl']"  alt="">
                         <h5 class=" card-title" >{{ course["courseName"] }}</h5>
                         <h6 class="card-subtitle mb-2 text-muted">{{course["category"]["categoryName"]}}</h6>
                         <div style="display: flex;justify-content: space-between;">
-                            <a class="link" (click)="internDetails()"> <span class="card-subtitle " >Interns:</span>{{getSize(i)}}</a>
-                            <a  class="btn mr-2"><i class="bx bx-minus-circle"></i> </a>
+                            <a class="link" (click)="internDetails(i)"  data-bs-toggle="modal" data-bs-target="#exampleModal1"> <span class="card-subtitle " >Interns:</span>{{getSize(i)}}</a>
+                            <a  class="btn mr-2" (click)="delete(i)" ><i class="bx bx-minus-circle"></i> </a>
                             <a class="btn" (click)="onClick(i)"  data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bx bx-edit-alt"></i></a>
                         </div>
                  </div>
@@ -17,7 +17,11 @@
            
     </div>
     <app-edit-form></app-edit-form>
+    <app-intern-list [internsList]="interns"></app-intern-list>
 </div>
+<button class="btn float">
+    <i class="bx bx-plus"></i>
+</button>
 
 
 

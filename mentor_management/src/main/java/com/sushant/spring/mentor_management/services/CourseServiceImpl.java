@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Service
 public class CourseServiceImpl implements CourseService{
     CourseRep courseRep;
@@ -36,11 +35,13 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Course save(CourseDTO courseDTO){
 
-//        System.out.println(courseDTO);
-
+        System.out.println(courseDTO.getInterns());
         List<Intern> interns = new ArrayList<>();
-//        System.out.println(internService.getIntern(1));
-//        System.out.println(interns);
+        for(Integer id : courseDTO.getInterns()){
+            interns.add(internService.getIntern(id));
+        }
+        System.out.println(interns);
+
         Course course = new Course(courseDTO.getCourseId(),
                 courseDTO.getCourseName(),
                 courseDTO.getImageUrl(),
@@ -50,10 +51,9 @@ public class CourseServiceImpl implements CourseService{
         return courseRep.save(course);
     }
 
+    @Override
+    public void delete(int id) {
+        courseRep.deleteById(id);
+    }
+
 }
-//
-//    Course course = new Course(courseDTO.getCourseId(),
-//             courseDTO.getCourseName(),
-//            categoryService.getCategory(courseDTO.getcId()),
-//            companyService.get(courseDTO.getCompanyId()),
-//            interns) ;

@@ -1,5 +1,6 @@
 package com.sushant.spring.mentor_management.controller;
 
+
 import com.sushant.spring.mentor_management.dto.CourseDTO;
 import com.sushant.spring.mentor_management.dto.InternDTO;
 import com.sushant.spring.mentor_management.entities.*;
@@ -100,14 +101,15 @@ public class CompanyController {
         // categoryService.getCategory(courseDTO.getcId()),
         // companyService.get(courseDTO.getCompanyId()),
         // interns) ;
-
+        System.out.println(courseDTO);
         courseService.save(courseDTO);
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
 
     @PostMapping("/saveIntern")
     public ResponseEntity<String> saveIntern(@Valid @RequestBody InternDTO internDTO) {
-        internService.save(internDTO);
+         internService.save(internDTO);
+
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
 
@@ -117,7 +119,7 @@ public class CompanyController {
     }
 
     @PutMapping("/editIntern/{id}")
-    public ResponseEntity<String> editIntern(@PathVariable int id, @RequestBody Intern intern) {
+    public @ResponseBody ResponseEntity<String> editIntern(@PathVariable int id, @RequestBody Intern intern) {
         internService.updateIntern(id, intern);
         return new ResponseEntity<>("Data update", HttpStatus.OK);
     }
@@ -125,6 +127,12 @@ public class CompanyController {
     @GetMapping("/getCategory")
     public List<Category> getAllCategory(){
         return categoryService.getAll();
+    }
+    @DeleteMapping("/course/{id}")
+    public ResponseEntity<String> deleteCourse(@PathVariable int id){
+        System.out.println("hellllllllllllllllllllllllllllllllllllllllllllllllllllo"+id);
+        courseService.delete(id);
+        return new ResponseEntity<>("Data deleted", HttpStatus.OK);
     }
 
 }

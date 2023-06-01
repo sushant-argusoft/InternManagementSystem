@@ -18,6 +18,7 @@ export class TableComponent implements OnInit{
   
   interns=[];
   category=['Id', 'Name' , 'Mentor' , 'Number of Courses', 'Progress'];
+  searchWord;
   
   constructor(private http:HttpClient,private appService : AppService){}
     ngOnInit() {
@@ -27,6 +28,11 @@ export class TableComponent implements OnInit{
         console.log(this.data);
         this.setdata();
      });
+     this.appService.searchWordSub.subscribe(
+      (res)=>{
+        this.searchWord = res;
+      }
+     )
  
     
   }
@@ -51,5 +57,6 @@ export class TableComponent implements OnInit{
      numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
+ 
 
 }

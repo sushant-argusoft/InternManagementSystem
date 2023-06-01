@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 export class AppService {
   
     isChecked: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-    searchWord: BehaviorSubject<string> = new BehaviorSubject<string>('');
+    searchWordSub: BehaviorSubject<string> = new BehaviorSubject<string>('');
     BASIC_URL = 'http://localhost:8080/company/';
 
 

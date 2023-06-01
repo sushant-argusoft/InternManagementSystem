@@ -1,19 +1,22 @@
 <nav class="navbar justify-content-between">
   <a class="navbar-brand">{{ header }}</a>
-  <form class="d-flex form-inline">
+  <form class="d-flex form-inline" #searchForm = "ngForm"    (ngSubmit)="search(searchForm)">
     <input
       class="form-control mx-2 mr-sm-2"
       type="search"
       placeholder="Search"
       aria-label="Search"
+      name="searchWord"
+      ngModel
+      (input)="search(searchForm)"
     />
-    <button class="btn-pri mx-2 my-2" type="submit">
+    <button class="btn-pri mx-2 my-2" type="submit" >
       <i class="bx bx-search"></i>
     </button>
-    <button class="btn-pri mx-2 my-2" >
+    <button class="btn-pri mx-2 my-2" type="button">
       <i class="bx bx-notification"></i>
     </button>
-    <button class="btn-pri mx-2 my-2" >
+    <button class="btn-pri mx-2 my-2" type="button" >
       <i class="bx bx-user"></i>
     </button>
   </form>

@@ -8,7 +8,7 @@
         <h4 class="card-title">Intern List</h4>
       </div>
       <div class="card-body">
-        <p-table [value]="interns" [tableStyle]="{ 'min-width': '50rem' }">
+        <p-table [value]="interns|filter:searchWord:'Name'" [tableStyle]="{ 'min-width': '50rem' }">
           <ng-template pTemplate="header">
             <tr>
               <th *ngFor="let cat of category; let i = index">{{ cat }}</th>
