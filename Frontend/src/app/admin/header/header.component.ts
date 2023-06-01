@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppService } from 'src/app/service/app.service';
+
 
 @Component({
   selector: 'app-header',
@@ -7,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+
+
+  constructor(private appService :AppService){}
+
+logout(){
+  this.appService.logout();
+}
+  
 }

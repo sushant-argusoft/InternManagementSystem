@@ -1,4 +1,5 @@
-create database if not exists `intern_management`;
+drop database  if exists `intern_management`;
+create database  `intern_management`;
 use `intern_management`;
 
 create table address(
@@ -30,6 +31,9 @@ create table person(
     last_name varchar(50) not null,
     date_of_birth date not null,
     address_id int not null,
+    `password` varchar(150) not null,
+    `role` varchar(20) not null,
+    
     foreign key (address_id) references address(address_id)
 );
 create index  person_idx on person(address_id , first_name , last_name , date_of_birth);
@@ -65,6 +69,7 @@ create index course_idx on course(c_id , company_id , course_name );
 create table course_enrolled(
     course_id int not null,
     intern_id int not null,
+    image_url varchar(150) not null,
     foreign key(course_id) references course(course_id),
     foreign key(intern_id) references intern(intern_id)
 );

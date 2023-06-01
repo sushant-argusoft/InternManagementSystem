@@ -1,27 +1,102 @@
-<div class=" card">
-    <div class="card-header card-header-success card-header-icon">
-      <div class="card-icon"><i class="bx bx-globe"></i></div>
-      <h4 class="card-title">Global Sales by Top Locations</h4>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon" [style]="{ backgroundColor: '#56af5a' }">
+          <i class="bx bx-list-ul"></i>
+        </div>
+        <h4 class="card-title">Intern List</h4>
+      </div>
+      <div class="card-body">
+        <p-table [value]="interns|filter:searchWord:'Name'" [tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header">
+            <tr>
+              <th *ngFor="let cat of category; let i = index">{{ cat }}</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-intern>
+            <tr>
+              <td>{{ intern.Id }}</td>
+              <td>{{ intern.Name }}</td>
+              <td>{{ intern.Mentor }}</td>
+              <td>{{ intern.Courses }}</td>
+              <td>
+                {{ intern.Progress }}
+                <div class="progress">
+                  <div
+                    class="progress-bar bg-success"
+                    role="progressbar"
+                    [style.width.%]="[intern.Progress]"
+                    aria-valuenow="25"
+                    aria-valuemin="0"
+                    aria-valuemax="100"
+                  ></div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
     </div>
-<div class="card-body">
-   <p-table [value] ="product" [tableStyle]="{'min-width':'50rem'}">
-    <ng-template pTemplate="header">
-      <tr>
-          <th>Code</th>
-          <th>Name</th>
-          <th>Category</th>
-          <th>Quantity</th>
-      </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-product>
-      <tr>
-          <td>{{ product.code }}</td>
-          <td>{{ product.name }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.quantity }}</td>
-      </tr>
-  </ng-template>
-   </p-table>
+  </div>
 </div>
 
+<div class="row mt-5">
+  <div class="col-xs-12 mb-3 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon" [style]="{ backgroundColor: '#fd970f' }">
+          <i class="bx bx-wallet"></i>
+        </div>
+        <div style="float: right">
+          <h6 class="card-title mr-2" style="text-align: end">Revenue</h6>
+
+          <div class="p-2" style="font-size: 26px">{{ "$" + revenue }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 mb-3 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon" [style]="{ backgroundColor: '#e32f6e' }">
+          <i class="bx bx-list-ul"></i>
+        </div>
+
+        <div style="float: right">
+          <h6 class="card-title mr-2" style="text-align: end">Employees</h6>
+
+          <div class="p-2" style="font-size: 26px">{{ employeeCount }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 mb-3 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon" [style]="{ backgroundColor: '#56af5a' }">
+          <i class="bx bx-id-card"></i>
+        </div>
+        <div style="float: right">
+          <h6 class="card-title mr-2" style="text-align: end">Interns</h6>
+
+          <div class="p-2" style="font-size: 26px">{{ internCount }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 mb-3 col-sm-6 col-md-4 col-lg-3">
+    <div class="card">
+      <div class="card-header card-header-success card-header-icon">
+        <div class="card-icon" [style]="{ backgroundColor: '#1ec0d5' }">
+          <i class="bx bx-book-content"></i>
+        </div>
+        <div style="float: right">
+          <h6 class="card-title mr-2" style="text-align: end">Courses</h6>
+
+          <div class="p-2" style="font-size: 26px">{{ internCount }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -27,21 +27,25 @@ public class Course {
     @NotBlank(message = "Course name  is mandatory")
     @Column(name = "course_name")
     private String courseName;
+    @NotNull
+    @Column(name = "image_url")
+    private String imageUrl;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "c_id", referencedColumnName = "c_id")
     Category category;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
     Company company;
 
-    @JsonIgnoreProperties("courses")
-    @ManyToMany()
+    @JsonIgnoreProperties({"courses","mentor"})
+
+    @ManyToMany(cascade= CascadeType.ALL)
     @JoinTable(
             name = "course_enrolled",
-            joinColumns = @JoinColumn(name = "intern_id"),
-            inverseJoinColumns = @JoinColumn(name = "course_id"))
+            joinColumns = @JoinColumn(name = "course_id"),
+            inverseJoinColumns = @JoinColumn(name = "intern_id"))
     List<Intern> interns;
 }

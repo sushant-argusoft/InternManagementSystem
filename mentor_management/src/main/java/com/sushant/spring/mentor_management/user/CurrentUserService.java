@@ -1,25 +1,23 @@
 package com.sushant.spring.mentor_management.user;
 
+import com.sushant.spring.mentor_management.entities.Person;
+import com.sushant.spring.mentor_management.repositories.PersonRep;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CurrentUserService implements UserDetailsService {
-    private final UserInMemoryRepository repository;
-
     @Autowired
-    public CurrentUserService(UserInMemoryRepository repository) {
-        this.repository = repository;
-    }
-
+    private PersonRep personRep;
     @Override
-    public CurrentUser loadUserByUsername(String username) throws UsernameNotFoundException {
-        final CurrentUser currentUser = repository.findUserByUsername(username);
-        if(currentUser == null) {
-            throw new UsernameNotFoundException("Failed to find user with username: "+ username);
-        }
-        return currentUser;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Optional<Person> person = personRep.findByEmail(email);
+        return person.map(CurrentUser::new)
+                .orElseThrow(()->new UsernameNotFoundException("Email not found"));
     }
 }

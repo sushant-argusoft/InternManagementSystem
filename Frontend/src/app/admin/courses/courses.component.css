@@ -1,0 +1,45 @@
+ img{
+    overflow: hidden;
+}
+:root {
+    --gradient: linear-gradient(to left top, #DD2476 10%, #FF512F 90%) !important;
+  }
+  
+  .bx{
+    color: var(--font-color);
+  }
+  .blur{
+    position:absolute;
+   
+  
+ 
+    filter: blur(1px);
+}
+.link{
+    text-decoration: none;
+    color: var(--font-color);
+}
+.link:hover{
+    text-decoration: underline;
+}
+.bx-minus-circle:hover{
+    color: red;
+}
+.bx-plus{
+    color: white;
+    font-size: 34px;
+    
+}
+
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color: var(--font-color);
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	
+}

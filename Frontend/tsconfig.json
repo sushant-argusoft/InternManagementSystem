@@ -29,5 +29,12 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  
+    "compilerOptions": {
+        "lib": [
+            "es5", "es6", "dom", "dom.iterable"
+        ]
+    }
+
 }

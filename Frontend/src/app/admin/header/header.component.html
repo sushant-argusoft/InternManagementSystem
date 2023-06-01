@@ -16,14 +16,19 @@
      <li>
      
        
-     <li>
-       <div class="iocn-link">
-         <a href="#">
+     <li >
+       <div class="iocn-link " role="button"   >
+         <a routerLink="courses" >
            <i class='bx bx-book-alt' ></i>
            <span class="link_name">Courses</span>
          </a>
-         <i class='bx bxs-chevron-down arrow' ></i>
+        
+        
        </div>
+      
+       
+
+       
        <ul class="sub-menu">
          <li><a class="link_name" href="#">Courses</a></li>
        
@@ -38,15 +43,7 @@
          <li><a class="link_name" href="#">Analytics</a></li>
        </ul>
      </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-line-chart' ></i>
-         <span class="link_name">Chart</span>
-       </a>
-       <ul class="sub-menu blank">
-         <li><a class="link_name" href="#">Chart</a></li>
-       </ul>
-     </li>
+  
     
      <li>
        <a href="#">
@@ -75,7 +72,7 @@
      <div class="name-job">
        <div class="profile_name">Argusoft</div>        
      </div>
-     <i class='bx bx-log-out' ></i>
+     <i class='bx bx-log-out' (click) = "logout()" ></i>
    </div>
  </li>
 </ul>

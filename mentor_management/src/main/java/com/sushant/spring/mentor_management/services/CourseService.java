@@ -10,5 +10,6 @@ public interface CourseService {
     Course create(Course course);
     List<Course> getAllCourses();
     Course save(CourseDTO courseDTO);
+    void delete(int id );
 
 }

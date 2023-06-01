@@ -19,7 +19,7 @@ public class InMemorySessionRegistry {
         SESSIONS.put(sessionId,username);
         return sessionId;
     }
-    public String getUsernameForSession(final  String sessionId){
+    public String getEmailForSession(final  String sessionId){
         return SESSIONS.get(sessionId);
     }
 

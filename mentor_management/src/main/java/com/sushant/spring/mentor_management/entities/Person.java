@@ -16,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @Entity
 @Table(name = "person")
+
 public class Person  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +36,12 @@ public class Person  {
     @NotBlank(message = "Date of Birth  is mandatory")
     @Column(name = "date_of_birth")
     private  String dateOfBirth;
+    @Column(name="email", nullable = false, updatable = false, unique=true)
+    private String email;
+    @Column(name="password", nullable = false)
+    private String password;
+    @Column(name="role", nullable = false)
+    private String role;
 
 
     @ManyToOne(cascade = CascadeType.ALL)

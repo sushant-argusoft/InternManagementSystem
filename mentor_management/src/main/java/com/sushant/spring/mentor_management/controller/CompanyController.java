@@ -1,5 +1,6 @@
 package com.sushant.spring.mentor_management.controller;
 
+
 import com.sushant.spring.mentor_management.dto.CourseDTO;
 import com.sushant.spring.mentor_management.dto.InternDTO;
 import com.sushant.spring.mentor_management.entities.*;
@@ -8,13 +9,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "https://localhost:8080/")
-@RequestMapping("/company")
+@CrossOrigin(origins = "*")
+@RequestMapping("/company/api")
 public class CompanyController {
 
     private CompanyService companyService;
@@ -26,20 +28,22 @@ public class CompanyController {
     private InternService internService;
 
     private CourseService courseService;
+    private CategoryService categoryService;
 
     // private CategoryService categoryService;
     @Autowired
     public CompanyController(CompanyService companyService, PersonService personService, MentorService mentorService,
-            InternService internService, CourseService courseService) {
+            InternService internService, CourseService courseService, CategoryService categoryService) {
         this.companyService = companyService;
         this.personService = personService;
         this.mentorService = mentorService;
         this.internService = internService;
         this.courseService = courseService;
-        // this.categoryService = categoryService;
+         this.categoryService = categoryService;
     }
 
     @GetMapping("/getCompany")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Company> getAllCompany() {
         return companyService.getAll();
     }
@@ -50,6 +54,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getPerson")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Person> getAllPerson() {
         return personService.getAll();
     }
@@ -60,16 +65,19 @@ public class CompanyController {
     }
 
     @GetMapping("/getMentor")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Mentor> getAllMentors() {
         return mentorService.getAllMentor();
     }
 
     @GetMapping("/getIntern/{getId}")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public Intern getInternById(@PathVariable int getId) {
         return internService.getIntern(getId);
     }
 
     @GetMapping("/getIntern")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
     public List<Intern> getAllInterns() {
         return internService.getAllIntern();
     }
@@ -93,14 +101,15 @@ public class CompanyController {
         // categoryService.getCategory(courseDTO.getcId()),
         // companyService.get(courseDTO.getCompanyId()),
         // interns) ;
-
+        System.out.println(courseDTO);
         courseService.save(courseDTO);
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
 
     @PostMapping("/saveIntern")
     public ResponseEntity<String> saveIntern(@Valid @RequestBody InternDTO internDTO) {
-        internService.save(internDTO);
+         internService.save(internDTO);
+
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
 
@@ -110,9 +119,20 @@ public class CompanyController {
     }
 
     @PutMapping("/editIntern/{id}")
-    public ResponseEntity<String> editIntern(@PathVariable int id, @RequestBody Intern intern) {
+    public @ResponseBody ResponseEntity<String> editIntern(@PathVariable int id, @RequestBody Intern intern) {
         internService.updateIntern(id, intern);
         return new ResponseEntity<>("Data update", HttpStatus.OK);
+    }
+
+    @GetMapping("/getCategory")
+    public List<Category> getAllCategory(){
+        return categoryService.getAll();
+    }
+    @DeleteMapping("/course/{id}")
+    public ResponseEntity<String> deleteCourse(@PathVariable int id){
+        System.out.println("hellllllllllllllllllllllllllllllllllllllllllllllllllllo"+id);
+        courseService.delete(id);
+        return new ResponseEntity<>("Data deleted", HttpStatus.OK);
     }
 
 }
