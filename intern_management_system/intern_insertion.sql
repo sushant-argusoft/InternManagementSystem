@@ -45,34 +45,34 @@ values
 insert into category(category_name) values
 ('Database'),('Java'),('Web');
 
-insert into course(course_name,c_id,company_id) values
-('Realtional Database Design',1,1) ,
-('SQL',1,1) ,
-('MongoDB',1,1) ,
-('JAVA BASIC',2,1) ,
-('Maven',2,1),
-('Angular',3,1),
-('Node',3,1);
+insert into course(course_name,c_id,company_id,image_url) values
+('Realtional Database Design',1,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg') ,
+('SQL',1,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg') ,
+('MongoDB',1,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg') ,
+('JAVA BASIC',2,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg') ,
+('Maven',2,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
+('Angular',3,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
+('Node',3,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg');
 
-insert into course_enrolled(course_id,intern_id,image_url)
+insert into course_enrolled(course_id,intern_id)
 values
-(1,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(1,2,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(1,3,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(1,4,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(1,5,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(2,2,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(2,4,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(2,5,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(3,7,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(3,5,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(3,6,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(4,1,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(4,4,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(6,5,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(7,5,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(7,6,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg'),
-(1,6,'https://img-c.udemycdn.com/course/480x270/4687762_1121.jpg');
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(2,2),
+(2,4),
+(2,5),
+(3,7),
+(3,5),
+(3,6),
+(4,1),
+(4,4),
+(6,5),
+(7,5),
+(7,6),
+(1,6);
 
 
 
