@@ -26,4 +26,9 @@ public class PersonServiceImpl implements PersonService{
     public Person get(int personId) {
         return personRep.findById(personId).orElseThrow(()-> new RuntimeException("person not found"));
     }
+
+    @Override
+    public Person getByEmail(String email) {
+        return personRep.findByEmail(email).orElseThrow(()-> new RuntimeException("person not found"));
+    }
 }

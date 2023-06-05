@@ -59,9 +59,9 @@ public class CompanyController {
         return personService.getAll();
     }
 
-    @GetMapping("/getPerson/{getId}")
-    public Address getPersonAddress(@PathVariable int getId) {
-        return personService.get(getId).getAddress();
+    @GetMapping("/getPerson/{getEmail}")
+    public Person getPersonAddress(@PathVariable String getEmail) {
+        return personService.getByEmail(getEmail);
     }
 
     @GetMapping("/getMentor")

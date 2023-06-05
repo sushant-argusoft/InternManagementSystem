@@ -7,6 +7,8 @@ import { AuthenticationGuard } from './gaurd/authentication.guard';
 import { CoursesComponent } from './admin/courses/courses.component';
 import { ResolverServiceResolver } from './service/resolver-service.resolver';
 import { EditFormComponent } from './admin/courses/edit-form/edit-form.component';
+import { AccountComponent } from './admin/account/account.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -28,6 +30,7 @@ const routes: Routes = [
         },
         children: [{ path: 'edit', component: EditFormComponent }],
       },
+      {path: 'account', component: AccountComponent}
     ],
     canActivate: [AuthenticationGuard],
   },
