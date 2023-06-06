@@ -10,4 +10,5 @@ public interface PersonService {
 
     List<Person> getAll();
     Person get(int personId);
+    Person getByEmail(String email);
 }

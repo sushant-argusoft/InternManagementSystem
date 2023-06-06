@@ -26,6 +26,7 @@ import { EditFormComponent } from './admin/courses/edit-form/edit-form.component
 import { HeaderComponent } from './admin/header/header.component';
 import { InternListComponent } from './admin/courses/intern-list/intern-list.component';
 import { FilterPipe } from './helper/filter.pipe';
+import { AccountComponent } from './admin/account/account.component';
 
 
 
@@ -46,7 +47,9 @@ import { FilterPipe } from './helper/filter.pipe';
     CoursesComponent,
     EditFormComponent,
     InternListComponent,
-    FilterPipe
+    FilterPipe,
+    AccountComponent
+    
    
   ],
   imports: [

@@ -62,6 +62,7 @@ create table  course(
     course_name varchar(100) not null,
     c_id int not null,
     company_id int not null,
+	image_url varchar(150) not null,
     foreign key(c_id) references category(c_id),
     foreign key(company_id) references company(company_id)
 );
@@ -69,7 +70,7 @@ create index course_idx on course(c_id , company_id , course_name );
 create table course_enrolled(
     course_id int not null,
     intern_id int not null,
-    image_url varchar(150) not null,
+   
     foreign key(course_id) references course(course_id),
     foreign key(intern_id) references intern(intern_id)
 );
