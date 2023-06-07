@@ -1,0 +1,109 @@
+.widget-26-job-emp-img img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  .widget-26-job-title {
+    min-width: 200px;
+  }
+  .widget-26 {
+    color: var(--font-color);
+    font-weight: 400;
+  }
+  .widget-26-job-title a {
+    font-weight: 400;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--font-color);
+    line-height: 1.5;
+  }
+  .widget-26-job-title a:hover {
+    color: #68CBD7;
+    text-decoration: none;
+  }
+  .widget-26-job-title .employer-name {
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 400;
+    color: var(--font-color);
+    font-size: 1rem;
+    
+  }
+  .widget-26-job-title .employer-name:hover {
+    color: #68CBD7;
+    text-decoration: none;
+  }
+  .widget-26 .widget-26-job-title .time {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  
+  .widget-26 .widget-26-job-info {
+    min-width: 100px;
+    font-weight: 400;
+  }
+  
+  .widget-26 .widget-26-job-info p {
+    line-height: 1.5;
+    color: var(--font-color);
+    font-size: 1rem;
+  }
+  
+  .widget-26 .widget-26-job-info .location {
+    color: var(--font-color);
+  }
+  
+  .widget-26 .widget-26-job-salary {
+    min-width: 70px;
+    font-weight: 400;
+    color: var(--font-color);
+    font-size: 1rem;
+  }
+  
+  .widget-26 .widget-26-job-category {
+    padding: .5rem;
+    display: inline-flex;
+    white-space: nowrap;
+    border-radius: 15px;
+  }
+  
+  .widget-26 .widget-26-job-category .indicator {
+    width: 13px;
+    height: 13px;
+    margin-right: .5rem;
+    float: left;
+    border-radius: 50%;
+  }
+  
+  .widget-26 .widget-26-job-category span {
+    font-size: 1rem;
+    color: var(--font-color);
+    font-weight: 600;
+  }
+  
+  .widget-26 .widget-26-job-starred svg {
+    width: 20px;
+    height: 20px;
+    color: #fd8b2c;
+  }
+  
+  .widget-26 .widget-26-job-starred svg.starred {
+    fill: #fd8b2c;
+  }
+  .bg-soft-base {
+    background-color: var(--primary-color);
+  }
+  .bg-soft-warning {
+      background-color: #fff4e1;
+  }
+  .bg-soft-success {
+      background-color: #d1f6f2;
+  }
+  .bg-soft-danger {
+      background-color: #fedce0;
+  }
+  .bg-soft-info {
+      background-color: #d7efff;
+  }
+  
+  

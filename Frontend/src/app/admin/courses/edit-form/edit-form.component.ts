@@ -65,7 +65,7 @@ export class EditFormComponent implements OnInit,OnDestroy{
     console.log(this.course);
     const sendObj = {
       courseId: this.course.id,
-      courseName: this.course.courseName,
+      courseName: respCourseName,
       imageUrl: this.course.imageUrl,
       cId: this.course.category.id,
       companyId: this.course.company.id,

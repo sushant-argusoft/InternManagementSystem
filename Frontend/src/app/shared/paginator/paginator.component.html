@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-12">
+    <div class="p-3 d-flex justify-content-end">
+        <span  class="mx-3">
+            <span style="font-size: 20px;">Page Size:</span>
+            <input [(ngModel)]="pageSize"  type="text" class="input mx-2" style="width:30px;height:50%;" />
+            
+         </span>
+        <span  class="mx-3">
+           <input type="text" [(ngModel)]="index" class="input mx-2" style="width:30px;height:50%;" />
+           <span  style="font-size: 20px;" >of {{totalSize}}</span>
+        </span>
+        <span  class="btn"> <i class="bx bx-chevron-left" style="color:var(--font-color)"></i></span>
+      <span  class="btn"> <i class="bx bx-chevron-right"></i></span>
+    </div>
+  </div>
+</div>

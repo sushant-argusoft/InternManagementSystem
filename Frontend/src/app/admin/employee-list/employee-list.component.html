@@ -1,0 +1,120 @@
+<app-navbar></app-navbar>
+<div class="row mx-3">
+  <div class="col-12 mt-5 mb-3">
+    <div class="card widget-26 p-3">
+      <tr class="d-flex justify-content-between">
+        <td>
+          <div class="">
+            <p>#</p>
+          </div>
+        </td>
+        <td (click)="sortList('id')">
+          <div class="">
+            <span class="type m-0"> ID </span>
+            <span>
+              <i class="bx bx-chevron-down" style="color: var(--font-color)"></i
+            ></span>
+          </div>
+        </td>
+        <td (click)="sortList('firstName')">
+          <div class="">
+            <span class="type m-0"> Name </span>
+            <span>
+              <i class="bx bx-chevron-down" style="color: var(--font-color)"></i
+            ></span>
+          </div>
+        </td>
+        <td>
+          <div class="">
+            <span class="type m-0"> Type </span>
+            <span>
+              <i class="bx bx-chevron-down" style="color: var(--font-color)"></i
+            ></span>
+          </div>
+        </td>
+        <td (click)="sortList('email')">
+          <span class="type m-0"> Email </span>
+          <span>
+            <i class="bx bx-chevron-down" style="color: var(--font-color)"></i
+          ></span>
+        </td>
+        <td (click)="sortList('role')">
+          <div class="">
+            <span class="type m-0"> Role </span>
+            <span>
+              <i class="bx bx-chevron-down" style="color: var(--font-color)"></i
+            ></span>
+          </div>
+        </td>
+        <td>
+          <div class="type m-0">
+            <span>Status</span>
+          </div>
+        </td>
+      </tr>
+    </div>
+  </div>
+
+  <div class="col-12 mb-3" *ngFor ="let person of persons|filter:searchword:'firstName'">
+    <div class="card widget-26 p-3">
+      <tr class="d-flex justify-content-between">
+        <td>
+          <div class="widget-26-job-emp-img">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar5.png"
+              alt="Company"
+            />
+          </div>
+        </td>
+        <td>
+          <div class="widget-26-job-info">
+            <p class="type mr-0">{{ person.id }}</p>
+          </div>
+        </td>
+        <td>
+          <div class="widget-26-job-title">
+            <a href="#" class="type m-0">{{
+              person.firstName + " " + person.lastName
+            }}</a>
+          </div>
+        </td>
+        <td>
+          <div class="widget-26-job-info">
+            <p class="type m-0">Employee</p>
+          </div>
+        </td>
+        <td>
+          <div class="widget-26-job-salary">{{ person.email }}</div>
+        </td>
+        <td>
+          <div class="widget-26-job-category bg-soft-base">
+            <span class="type m-0">{{ person.role }}</span>
+          </div>
+        </td>
+        <td>
+          <div class="widget-26-job-starred">
+            
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                [attr.fill]="person.status==='active'?'#fd8b2c':'none'"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-star"
+              >
+                <polygon
+                  points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                ></polygon>
+              </svg>
+           
+          </div>
+        </td>
+      </tr>
+    </div>
+  </div>
+</div>
+<app-paginator [totalSize]="persons.length" [pageSize]="3"></app-paginator>
