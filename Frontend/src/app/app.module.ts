@@ -27,6 +27,9 @@ import { HeaderComponent } from './admin/header/header.component';
 import { InternListComponent } from './admin/courses/intern-list/intern-list.component';
 import { FilterPipe } from './helper/filter.pipe';
 import { AccountComponent } from './admin/account/account.component';
+import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
+import { PaginatorComponent } from './shared/paginator/paginator.component';
+
 
 
 
@@ -48,7 +51,9 @@ import { AccountComponent } from './admin/account/account.component';
     EditFormComponent,
     InternListComponent,
     FilterPipe,
-    AccountComponent
+    AccountComponent,
+    EmployeeListComponent,
+    PaginatorComponent
     
    
   ],

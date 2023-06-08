@@ -42,6 +42,8 @@ public class Person  {
     private String password;
     @Column(name="role", nullable = false)
     private String role;
+    @Column(name = "status")
+    private String status;
 
 
     @ManyToOne(cascade = CascadeType.ALL)

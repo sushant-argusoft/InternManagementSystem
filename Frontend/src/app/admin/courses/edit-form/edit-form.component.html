@@ -1,14 +1,12 @@
 <!-- Modal -->
 <div
-  class="modal fade"
-  id="exampleModal"
+
   tabindex="-1"
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
-  (click)="modalCloseFn($event)"
 >
-  <div class="modal-dialog">
-    <div class="modal-content" #modalContent>
+  <div class="modal-dialog my-0">
+    <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Course</h5>
         <button
@@ -30,7 +28,7 @@
                   id="form6Example1"
                   formControlName="courseName"
                   class="form-control"
-                  value="{{ formGroup.value['courseName'] }}"
+                  [value]="formGroup.value['courseName']"
                 />
                 <label class="form-label" for="form6Example1"
                   >Course name</label
@@ -64,7 +62,7 @@
             >
               <option
                 *ngFor="let category of allCatogories"
-                [ngValue]="category['categoryName']"
+                [ngValue]="category['id']"
               >
                 {{ category["categoryName"] }}
               </option>

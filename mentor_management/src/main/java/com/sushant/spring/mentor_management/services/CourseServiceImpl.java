@@ -35,12 +35,12 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public Course save(CourseDTO courseDTO){
 
-        System.out.println(courseDTO.getInterns());
+
         List<Intern> interns = new ArrayList<>();
         for(Integer id : courseDTO.getInterns()){
             interns.add(internService.getIntern(id));
         }
-        System.out.println(interns);
+
 
         Course course = new Course(courseDTO.getCourseId(),
                 courseDTO.getCourseName(),

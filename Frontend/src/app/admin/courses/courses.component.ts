@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 import { CourseService } from '../../service/course.service';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 @Component({
   selector: 'app-courses',
@@ -15,16 +17,21 @@ export class CoursesComponent implements OnInit {
   courses: [];
   ind = -1;
   searchWord;
+  ngbModalRef: NgbModalRef;
 
   constructor(
     private appService: AppService,
     private route: ActivatedRoute,
     private router: Router,
+    private modalService: NgbModal,
     private courseService: CourseService
   ) {}
 
   ngOnInit() {
-    this.courses = this.route.snapshot.data['data'];
+    // this.courses = this.route.snapshot.data['data'];
+    this.appService.getCourses().subscribe((res) => {
+      this.courses = res;
+    });
     this.appService.searchWordSub.subscribe((res) => {
       this.searchWord = res;
     });
@@ -34,9 +41,8 @@ export class CoursesComponent implements OnInit {
     return (<[]>this.courses[i]['interns']).length;
   }
   onClick(i) {
-    this.ind = i;
-    this.edit = true;
-    this.courseService.course.next(this.courses[i]);
+    this.ngbModalRef = this.modalService.open(EditFormComponent);
+    this.ngbModalRef.componentInstance.course = this.courses[i];
   }
   internDetails(i) {
     this.interns = this.courses[i]['interns'];

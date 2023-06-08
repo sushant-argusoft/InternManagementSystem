@@ -7,6 +7,7 @@ export default class Person {
     public password;
     public role;
     public address;
+    public status
   constructor(
      id,
      firstName,
@@ -15,7 +16,8 @@ export default class Person {
      email,
      password,
      role,
-     address
+     address,
+     status
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -25,6 +27,7 @@ export default class Person {
      this.password = password;
      this.role = role;
       this. address = address;
+      this.status = status;
   }
 
 

@@ -1,81 +1,74 @@
-<div class="sidebar"  appToggle>
-   <div class="logo-details" >
-     <i class="bx bx-info-square" style="padding:0"></i>
-     <span class="logo_name"> Mentor</span>
-   </div>
-   <ul class="nav-links">
-     <li>
-       <a routerLink="dashboard">
-         <i class='bx bx-grid-alt' ></i>
-         <span class="link_name" >Dashboard</span>
-       </a>
-       <ul class="sub-menu blank">
-         <li><a class="link_name" href="#">Dashboard</a></li>
-       </ul>
-     </li>
-     <li>
-     
-       
-     <li >
-       <div class="iocn-link " role="button"   >
-         <a routerLink="courses" >
-           <i class='bx bx-book-alt' ></i>
-           <span class="link_name">Courses</span>
-         </a>
-        
-        
-       </div>
-      
-       
+<div class="sidebar" appToggle>
+  <div class="logo-details">
+    <i class="bx bx-info-square" style="padding: 0"></i>
+    <span class="logo_name"> Mentor</span>
+  </div>
+  <ul class="nav-links">
+    <li>
+      <a routerLink="dashboard">
+        <i class="bx bx-grid-alt"></i>
+        <span class="link_name">Dashboard</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Dashboard</a></li>
+      </ul>
+    </li>
+    <li></li>
 
-       
-       <ul class="sub-menu">
-         <li><a class="link_name" href="#">Courses</a></li>
-       
-       </ul>
-     </li>
-     <li>
-       <a href="#">
-         <i class='bx bx-pie-chart-alt-2' ></i>
-         <span class="link_name">Analytics</span>
-       </a>
-       <ul class="sub-menu blank">
-         <li><a class="link_name" href="#">Analytics</a></li>
-       </ul>
-     </li>
-  
-    
-     <li>
-       <a routerLink="employeeList">
-         <i class='bx bx-table' ></i>
-         <span class="link_name">Employee List</span>
-       </a>
-       <ul class="sub-menu blank">
-         <li><a class="link_name" href="#">Employee List</a></li>
-       </ul>
-     </li>
-   
-     <li>
-       <a routerLink="account">
-         <i class='bx bxs-user-account' ></i>
-         <span class="link_name">Account</span>
-       </a>
-       <ul class="sub-menu blank">
-         <li><a class="link_name" href="#">Account</a></li>
-       </ul>
-     </li>
-     <li>
-   <div class="profile-details">
-     <div class="profile-content">
-       <img src="https://www.argusoft.com/images/logo.png" alt="profileImg">
-     </div>
-     <div class="name-job">
-       <div class="profile_name">Argusoft</div>        
-     </div>
-     <i class='bx bx-log-out' (click) = "logout()" ></i>
-   </div>
- </li>
-</ul>
- </div>
- 
+    <li>
+      <div class="iocn-link" role="button">
+        <a routerLink="courses">
+          <i class="bx bx-book-alt"></i>
+          <span class="link_name">Courses</span>
+        </a>
+      </div>
 
+      <ul class="sub-menu">
+        <li><a class="link_name" href="#">Courses</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">
+        <i class="bx bx-pie-chart-alt-2"></i>
+        <span class="link_name">Analytics</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Analytics</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a routerLink="employees">
+        <i class="bx bx-table"></i>
+        <span class="link_name">Employee List</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Employee List</a></li>
+      </ul>
+    </li>
+
+    <li>
+      <a routerLink="account">
+        <i class="bx bxs-user-account"></i>
+        <span class="link_name">Account</span>
+      </a>
+      <ul class="sub-menu blank">
+        <li><a class="link_name" href="#">Account</a></li>
+      </ul>
+    </li>
+    <li>
+      <div class="profile-details">
+        <div class="profile-content">
+          <img
+            src="https://www.argusoft.com/images/logo.png"
+            alt="profileImg"
+          />
+        </div>
+        <div class="name-job">
+          <div class="profile_name">Argusoft</div>
+        </div>
+        <i class="bx bx-log-out" (click)="logout()"></i>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -8,6 +8,7 @@ import { CoursesComponent } from './admin/courses/courses.component';
 import { ResolverServiceResolver } from './service/resolver-service.resolver';
 import { EditFormComponent } from './admin/courses/edit-form/edit-form.component';
 import { AccountComponent } from './admin/account/account.component';
+import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
         },
         children: [{ path: 'edit', component: EditFormComponent }],
       },
-      {path: 'account', component: AccountComponent}
+      {path: 'account', component: AccountComponent},
+      {path: 'employees', component: EmployeeListComponent}
     ],
     canActivate: [AuthenticationGuard],
   },

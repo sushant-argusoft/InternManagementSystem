@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --primary-color: #302AE6;
+    --primary-color: #9A97F3;
     --secondary-color: #536390;
     --font-color: #424242;
     --bg-color: #fff;
@@ -8,7 +8,7 @@
     --toggle-color: #fff
 }
 [data-theme="dark"] {
-    --primary-color: #9A97F3;
+    --primary-color: #302AE6;
     --secondary-color: #818cab;
     --font-color: #e1e1ff;
     --bg-color: #161625;
@@ -19,6 +19,7 @@
 body {
     background-color: var(--toggle-color);
     color: var(--font-color);
+    
 }
 /* Google Fonts Import Link */
 html{

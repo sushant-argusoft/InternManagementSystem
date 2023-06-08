@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Intern from '../model/intern.model';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, catchError, throwError } from 'rxjs';
 import axios from 'axios';
 import { Router } from '@angular/router';
 import Person from '../model/person.model';
@@ -21,6 +21,8 @@ export class AppService {
         password: model.password,
       });
       sessionStorage.setItem('sessionId', data.data.sessionId);
+      sessionStorage.setItem('email',model.username);
+      
       this.getPerson(model.username).subscribe((res) => {
         this.person = new Person(
           res['id'],
@@ -30,19 +32,21 @@ export class AppService {
           res['email'],
           res['password'],
           res['role'],
-          res['address']
+          res['address'],
+          res['status']
         );
-       
-        console.log(this.person);
+
+        localStorage.setItem('person', JSON.stringify(this.person));
       });
 
-      this.router.navigate(['../admin']);
+      this.router.navigate(['../admin/dashboard']);
     } catch (err) {
       console.log(err.message);
     }
   }
   logout() {
     sessionStorage.clear();
+    localStorage.clear();
 
     this.router.navigate(['../login']);
   }
@@ -61,5 +65,22 @@ export class AppService {
 
   getPerson(email) {
     return this.http.get<[]>(this.BASIC_URL + 'api/getPerson/' + email);
+  }
+  postPerson(person: Person) {
+    return this.http
+      .post(`${this.BASIC_URL}api/person`, person,
+      {
+        observe: 'body', responseType: 'text'
+      })
+      .pipe(
+        catchError((err) => {
+          console.log(err);
+          return throwError(err);
+        })
+      );
+  }
+
+  getAllPersons(){
+   return this.http.get<[]>(this.BASIC_URL+'api/getPerson');
   }
 }

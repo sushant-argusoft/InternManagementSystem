@@ -37,4 +37,7 @@ export class NavbarComponent implements OnInit {
   search(searchForm) {
     this.appService.searchWordSub.next(searchForm.form.value['searchWord']);
   }
+  logout(){
+    this.appService.logout();
+  }
 }

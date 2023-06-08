@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, of, throwError } from 'rxjs';
+import { BehaviorSubject, Subject, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CourseService {
-  course: BehaviorSubject<[]> = new BehaviorSubject<[]>([]);
+  course: Subject<any> = new Subject();
  BASIC_URL = 'http://localhost:8080/company/api/';
   constructor(private http: HttpClient) {}
 

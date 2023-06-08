@@ -1,6 +1,10 @@
 <nav class="navbar justify-content-between">
   <a class="navbar-brand">{{ header }}</a>
-  <form class="d-flex form-inline" #searchForm = "ngForm"    (ngSubmit)="search(searchForm)">
+  <form
+    class="d-flex form-inline"
+    #searchForm="ngForm"
+    (ngSubmit)="search(searchForm)"
+  >
     <input
       class="form-control mx-2 mr-sm-2"
       type="search"
@@ -10,15 +14,16 @@
       ngModel
       (input)="search(searchForm)"
     />
-    <button class="btn-pri mx-2 my-2" type="submit" >
+    <button class="btn-pri mx-2 my-2" type="submit">
       <i class="bx bx-search"></i>
     </button>
-    <button class="btn-pri mx-2 my-2" type="button">
-      <i class="bx bx-notification"></i>
-    </button>
-    <button class="btn-pri mx-2 my-2" type="button" >
+    <button class="btn-pri mx-2 my-2" routerLink="../account" type="button">
       <i class="bx bx-user"></i>
     </button>
+    <button class="btn-pri mx-2 my-2" type="button" (click)="logout()">
+      <i class="bx bx-log-out-circle"></i>
+    </button>
+    
   </form>
 </nav>
 <div class="theme-switch-wrapper d-flex">

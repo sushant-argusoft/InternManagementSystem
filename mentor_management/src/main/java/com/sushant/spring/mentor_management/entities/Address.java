@@ -21,14 +21,13 @@ public class Address {
     @Column(name="address_id")
     private int id;
     @NotNull
-    @NotBlank(message = "House number is mandatory")
     @Column(name = "house_number")
     private int houseNumber;
     @NotNull
     @Column(name="street_number")
     private int streetNumber;
     @NotNull
-    @NotBlank(message = "Street name  is mandatory")
+
     @Column(name = "street_name")
     private  String streetName;
     @NotNull
@@ -39,7 +38,7 @@ public class Address {
     @NotBlank(message = "City name  is mandatory")
     private  String cityName;
     @NotNull
-    @NotBlank(message = "Country name  is mandatory")
+
     @Column(name="country_name")
     private String countryName;
 }

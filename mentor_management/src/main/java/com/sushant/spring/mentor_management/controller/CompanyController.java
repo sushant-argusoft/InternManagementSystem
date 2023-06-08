@@ -5,6 +5,7 @@ import com.sushant.spring.mentor_management.dto.CourseDTO;
 import com.sushant.spring.mentor_management.dto.InternDTO;
 import com.sushant.spring.mentor_management.entities.*;
 import com.sushant.spring.mentor_management.services.*;
+import jakarta.validation.ReportAsSingleViolation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/company/api")
 public class CompanyController {
 
@@ -54,7 +55,7 @@ public class CompanyController {
     }
 
     @GetMapping("/getPerson")
-    @PreAuthorize("hasRole('ROLE_MENTOR')")
+   
     public List<Person> getAllPerson() {
         return personService.getAll();
     }
@@ -101,7 +102,7 @@ public class CompanyController {
         // categoryService.getCategory(courseDTO.getcId()),
         // companyService.get(courseDTO.getCompanyId()),
         // interns) ;
-        System.out.println(courseDTO);
+
         courseService.save(courseDTO);
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
@@ -135,4 +136,11 @@ public class CompanyController {
         return new ResponseEntity<>("Data deleted", HttpStatus.OK);
     }
 
+    @PostMapping("/person")
+    public ResponseEntity<String> savePerson(@RequestBody Person person){
+        System.out.println(person);
+
+        personService.create(person);
+        return new ResponseEntity<>("Data saved", HttpStatus.OK);
+    }
 }

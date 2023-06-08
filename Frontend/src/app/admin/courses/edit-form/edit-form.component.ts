@@ -1,73 +1,78 @@
-import { Component, ElementRef, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../../service/course.service';
 import { AppService } from 'src/app/service/app.service';
+import {
+  NgbActiveModal,
+  NgbModal,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-form',
   templateUrl: './edit-form.component.html',
   styleUrls: ['./edit-form.component.css'],
 })
-export class EditFormComponent implements OnInit,OnDestroy{
+export class EditFormComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   isSubmitted = false;
   allCatogories;
   courseName: '';
   category: '';
   imageUrl: '';
-  course;
   loading: boolean = false;
-  @ViewChild('modalContent')modalClose:ElementRef;
+
+  @Input() course: any;
 
   constructor(
+    private ngbActiveModal: NgbActiveModal,
     private courseService: CourseService,
     private appService: AppService
   ) {}
   ngOnDestroy(): void {
     this.courseService.course.unsubscribe();
-    
   }
 
   ngOnInit(): void {
-   
+    console.log(this.course);
+
     this.appService.getCategory().subscribe((res) => {
       this.allCatogories = res;
     });
 
-    this.courseService.course.subscribe((res) => {
-      this.course = res;
-      console.log(res['courseName']);
-      this.setData(res);
-    });
     this.formGroup = new FormGroup({
-      courseName: new FormControl('', Validators.required),
-      imagePath: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
+      courseName: new FormControl(this.course.courseName, Validators.required),
+      imagePath: new FormControl(this.course.imageUrl, Validators.required),
+      category: new FormControl(this.course.category.id, Validators.required),
     });
   }
 
-  onSubmit() {
-    this.loading = true;
-    const respCourseName = this.formGroup.get('courseName').value;
-    const respImageUrl = this.formGroup.get('imagePath').value;
-    const tempCategory = this.formGroup
-      .get('category')
-      .value.slice(this.formGroup.get('category').value.indexOf(':') + 1)
-      .trim();
-    const respCategory = this.allCatogories.find(
-      (el) => el.categoryName === tempCategory
-    );
+  editFormControls() {
+    return this.formGroup.controls;
+  }
 
-    this.course.courseName = respCourseName;
-    this.course.imageUrl = respImageUrl;
-    this.course.category = respCategory;
+  onSubmit() {
+    if (!this.formGroup.valid) return;
+    this.close();
+    let formValues = this.formGroup.value;
+    // console.log(formValues);
+
+    this.loading = true;
 
     console.log(this.course);
     const sendObj = {
       courseId: this.course.id,
-      courseName: respCourseName,
-      imageUrl: this.course.imageUrl,
-      cId: this.course.category.id,
+      courseName: formValues.courseName,
+      imageUrl: formValues.imagePath,
+      cId: formValues.category,
       companyId: this.course.company.id,
       interns: this.course.interns.map((el) => el.internId),
     };
@@ -77,28 +82,27 @@ export class EditFormComponent implements OnInit,OnDestroy{
       (res) => {
         this.loading = false;
         this.isSubmitted = true;
+        this.course.courseName = formValues.courseName;
+        this.course.imageUrl = formValues.imagePath;
+        this.course.category = this.allCatogories.filter(
+          (el) => {
+            
+            
+            return el.id ==formValues.category}
+        );
+        console.log(this.course);
+        
       },
       (err) => {
         this.isSubmitted = false;
       }
     );
   }
-  close(){
-    this.isSubmitted = false;
-  }
-  modalCloseFn(e){
-    if(this.modalClose.nativeElement.contains(e.target)){
-      this.close();
-    }
+  close() {
+    this.ngbActiveModal.close();
+    // this.isSubmitted = false;
   }
 
-  setData(res) {
-    this.formGroup.setValue({
-      courseName: res['courseName'],
-      imagePath: res['imageUrl'],
-      category: res['category']['categoryName'],
-    });
-  }
   changeCategory(e) {
     this.formGroup.get('category').setValue(e.target.value, { onlySelf: true });
   }
