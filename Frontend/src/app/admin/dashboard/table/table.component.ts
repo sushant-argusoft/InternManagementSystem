@@ -15,18 +15,26 @@ export class TableComponent implements OnInit{
   internCount:number;
   employeeCount:number;
   revenue:number;
-  
+  edit=false;
+  view = false;
   interns=[];
   category=['Id', 'Name' , 'Mentor' , 'Number of Courses', 'Progress'];
   searchWord;
+  pageSize = 3;
+  totalSize;
+  index = 0;
+
+  sliceInternList;
   
   constructor(private http:HttpClient,private appService : AppService){}
     ngOnInit() {
     
      this.appService.getIntern().subscribe((resp)=>{
         this.data = resp;
+        this.totalSize = this.data.length
         console.log(this.data);
         this.setdata();
+        this.sliceInternList = this.sliceList;
      });
      this.appService.searchWordSub.subscribe(
       (res)=>{
@@ -56,6 +64,39 @@ export class TableComponent implements OnInit{
 
      numberWithCommas(x) {
       return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+  onClick(e){
+    this.view = true;
+  }
+  onDblClick(e){
+   this.edit = true;
+  }
+  onBlur(){
+    this.view = false;
+    this.edit = false;
+  }
+  componentStyle(){
+    if(this.view){
+      return {
+        borderColor:'red',
+        borderStyle:'dashed',
+        borderWidth:'2px'
+      };
+    }
+    return {};
+  }
+
+  onChange(e){
+    this.index = +e.index;
+    this.pageSize = +e.pageSize;
+    this.sliceInternList = this.sliceList;
+  }
+  get sliceList(){
+    const startIndex = this.index * this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    console.log(startIndex, endIndex);
+
+    return this.interns.slice(startIndex, endIndex).slice();
   }
  
 

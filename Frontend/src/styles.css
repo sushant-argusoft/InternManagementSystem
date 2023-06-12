@@ -59,6 +59,9 @@ html{
     font-size: 22px;
     color: var(--bg-color);
 }
+.card  .bx-chevron-left ,.card  .bx-chevron-right{
+    font-size: 34px !important;
+}
 #loading{
     position: absolute;
     left: 50%;

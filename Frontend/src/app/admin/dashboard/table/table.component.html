@@ -8,7 +8,7 @@
         <h4 class="card-title">Intern List</h4>
       </div>
       <div class="card-body">
-        <p-table [value]="interns|filter:searchWord:'Name'" [tableStyle]="{ 'min-width': '50rem' }">
+        <p-table [value]="sliceInternList|filter:searchWord:'Name'" [tableStyle]="{ 'min-width': '50rem' }">
           <ng-template pTemplate="header">
             <tr>
               <th *ngFor="let cat of category; let i = index">{{ cat }}</th>
@@ -18,7 +18,7 @@
             <tr>
               <td>{{ intern.Id }}</td>
               <td>{{ intern.Name }}</td>
-              <td>{{ intern.Mentor }}</td>
+              <td [style]="componentStyle()" [attr.contenteditable]="edit" (blur)="onBlur()" (click)="onClick($event)" (dblclick)="onDblClick($event)">{{ intern.Mentor }}</td>
               <td>{{ intern.Courses }}</td>
               <td>
                 {{ intern.Progress }}
@@ -36,6 +36,7 @@
             </tr>
           </ng-template>
         </p-table>
+        <app-paginator *ngIf="totalSize" (change)="onChange($event)" [totalSize]="totalSize" [pageSize]="pageSize"></app-paginator>
       </div>
     </div>
   </div>
@@ -100,3 +101,5 @@
     </div>
   </div>
 </div>
+
+ 

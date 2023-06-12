@@ -10,11 +10,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../../service/course.service';
 import { AppService } from 'src/app/service/app.service';
-import {
-  NgbActiveModal,
-  NgbModal,
-  NgbModalRef,
-} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-form',
@@ -84,14 +80,10 @@ export class EditFormComponent implements OnInit, OnDestroy {
         this.isSubmitted = true;
         this.course.courseName = formValues.courseName;
         this.course.imageUrl = formValues.imagePath;
-        this.course.category = this.allCatogories.filter(
-          (el) => {
-            
-            
-            return el.id ==formValues.category}
-        );
+        this.course.category = this.allCatogories.filter((el) => {
+          return el.id == formValues.category;
+        });
         console.log(this.course);
-        
       },
       (err) => {
         this.isSubmitted = false;

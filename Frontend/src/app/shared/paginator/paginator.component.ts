@@ -10,14 +10,15 @@ export class PaginatorComponent implements OnInit {
   @Input() pageSize: number;
   totalPages;
   currentPage = 1;
-  pageSizeTemp ;
+  pageSizeTemp;
 
   index = 0;
   @Output() change = new EventEmitter<{}>();
   ngOnInit(): void {
     this.pageSizeTemp = this.pageSize;
+
     this.totalPages = Math.ceil(this.totalSize / this.pageSizeTemp);
-    
+
     this.change.emit({ index: this.index, pageSize: this.pageSize });
   }
 
@@ -37,13 +38,12 @@ export class PaginatorComponent implements OnInit {
   }
   onEntry() {
     this.index = this.currentPage - 1;
-    
+
     this.change.emit({ index: this.index, pageSize: this.pageSizeTemp });
   }
   valueChange(e) {
-  
     if (this.pageSizeTemp > this.totalSize) this.pageSize = this.totalSize;
-    console.log(this.pageSizeTemp)
+    console.log(this.pageSizeTemp);
     this.totalPages = Math.ceil(this.totalSize / this.pageSizeTemp);
     this.change.emit({ index: this.index, pageSize: this.pageSizeTemp });
   }

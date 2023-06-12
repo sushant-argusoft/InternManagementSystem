@@ -55,7 +55,7 @@
     </div>
   </div>
 
-  <div class="col-12 mb-3"  *ngFor ="let person of sliceList|filter:searchword:'firstName'">
+  <div class="col-12 mb-3"  *ngFor ="let person of slicePersonList|filter:searchword:'firstName'">
     <div class="card widget-26 p-3">
       <tr class="d-flex justify-content-between">
         <td>
@@ -117,5 +117,5 @@
     </div>
   </div>
 </div>
-<app-paginator (change)="onChange($event)" [totalSize]="totalSize" [pageSize]="pageSize"></app-paginator>
+<app-paginator *ngIf="totalSize" (change)="onChange($event)" [totalSize]="totalSize" [pageSize]="pageSize"></app-paginator>
  
