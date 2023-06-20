@@ -44,9 +44,13 @@ public class CompanyController {
     }
 
     @GetMapping("/getCompany")
-    @PreAuthorize("hasRole('ROLE_MENTOR')")
-    public List<Company> getAllCompany() {
-        return companyService.getAll();
+    @PreAuthorize("hasAnyRole('ROLE_MENTOR','ROLE_ADMIN')")
+    public ResponseEntity<List<Company>> getAllCompany() {
+        return new ResponseEntity<>(companyService.getAll(),HttpStatus.OK);
+    }
+    @GetMapping("/getCourseForMentor/{id}")
+    public  List<Course> getCourseForMentor(@PathVariable int id ){
+        return this.courseService.getCourseForMentor(id);
     }
 
     @GetMapping("/getAddress/{getId}")
@@ -66,19 +70,24 @@ public class CompanyController {
     }
 
     @GetMapping("/getMentor")
-    @PreAuthorize("hasRole('ROLE_MENTOR')")
+    @PreAuthorize("hasAnyRole('ROLE_MENTOR','ROLE_ADMIN')")
     public List<Mentor> getAllMentors() {
         return mentorService.getAllMentor();
     }
 
     @GetMapping("/getIntern/{getId}")
-    @PreAuthorize("hasRole('ROLE_MENTOR')")
+    @PreAuthorize("hasRole('ROLE_INTERN')")
     public Intern getInternById(@PathVariable int getId) {
         return internService.getIntern(getId);
     }
+    @GetMapping("/getMentor/{getId}")
+    @PreAuthorize("hasRole('ROLE_MENTOR')")
+    public Mentor getMentorById(@PathVariable int getId) {
+        return mentorService.getMentor(getId);
+    }
 
     @GetMapping("/getIntern")
-    @PreAuthorize("hasRole('ROLE_MENTOR')")
+    @PreAuthorize("hasAnyRole('ROLE_MENTOR','ROLE_ADMIN')")
     public List<Intern> getAllInterns() {
         return internService.getAllIntern();
     }
@@ -88,6 +97,7 @@ public class CompanyController {
         return courseService.getAllCourses();
 
     }
+
 
     @PostMapping("/saveCourse")
     public ResponseEntity<String> saveCourse(@Valid @RequestBody CourseDTO courseDTO) {
@@ -107,12 +117,12 @@ public class CompanyController {
         return new ResponseEntity<>("data saved", HttpStatus.OK);
     }
 
-    @PostMapping("/saveIntern")
-    public ResponseEntity<String> saveIntern(@Valid @RequestBody InternDTO internDTO) {
-         internService.save(internDTO);
-
-        return new ResponseEntity<>("data saved", HttpStatus.OK);
-    }
+//    @PostMapping("/saveIntern")
+//    public ResponseEntity<String> saveIntern(@Valid @RequestBody InternDTO internDTO) {
+//         internService.save(internDTO);
+//
+//        return new ResponseEntity<>("data saved", HttpStatus.OK);
+//    }
 
     @PostMapping("/saveCompany")
     public Company saveCompany(@Valid @RequestBody Company company) {
@@ -131,7 +141,7 @@ public class CompanyController {
     }
     @DeleteMapping("/course/{id}")
     public ResponseEntity<String> deleteCourse(@PathVariable int id){
-        System.out.println("hellllllllllllllllllllllllllllllllllllllllllllllllllllo"+id);
+
         courseService.delete(id);
         return new ResponseEntity<>("Data deleted", HttpStatus.OK);
     }
@@ -143,4 +153,27 @@ public class CompanyController {
         personService.create(person);
         return new ResponseEntity<>("Data saved", HttpStatus.OK);
     }
+
+    @PostMapping("/changeMentor/{internId}")
+    public ResponseEntity<String>  changeMentor(@PathVariable int internId,@RequestBody int id){
+
+       this.internService.getIntern(internId).setMentor(this.mentorService.getMentor(id));
+        internService.create(this.internService.getIntern(internId))  ;
+        return new ResponseEntity<>("Changed Mentor",HttpStatus.OK);
+    }
+    @PostMapping("/saveIntern")
+    public ResponseEntity<String> saveIntern(@RequestBody Intern intern){
+        this.internService.create(intern);
+        return new ResponseEntity<>("Saved Intern", HttpStatus.OK);
+    }
+    @PostMapping("/saveMentor")
+    public ResponseEntity<String> saveMentor(@RequestBody Mentor mentor){
+        this.mentorService.create(mentor);
+        return new ResponseEntity<>("Saved Mentor", HttpStatus.OK);
+    }
+    @GetMapping("/getRemainingMentors")
+    public  List<Mentor> getRemainingMentors(){
+        return mentorService.getRemainingMentor();
+    }
+
 }

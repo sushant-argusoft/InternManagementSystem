@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppService } from 'src/app/service/app.service';
 /*	ID 	NAME 
 EMAIL ID 
@@ -17,10 +18,11 @@ export class EmployeeListComponent implements OnInit {
   pageSize = 3;
   totalSize;
   index = 0;
+  userRole
 
   slicePersonList;
 
-  constructor(private appService: AppService) {}
+  constructor(private appService: AppService,private router : Router,private activatedRoute:ActivatedRoute) {}
   ngOnInit(): void {
     this.appService.getAllPersons().subscribe((res) => {
       this.persons = res;
@@ -31,6 +33,7 @@ export class EmployeeListComponent implements OnInit {
     this.appService.searchWordSub.subscribe((res) => {
       this.searchword = res;
     });
+    this.userRole = localStorage.getItem('role');
   }
 
   sortList(v) {
@@ -53,5 +56,9 @@ export class EmployeeListComponent implements OnInit {
     console.log(startIndex, endIndex);
 
     return this.persons.slice(startIndex, endIndex).slice();
+  }
+  onAdd(){
+    this.router.navigate(['../addEmployee'],{relativeTo:this.activatedRoute});
+    
   }
 }

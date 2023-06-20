@@ -5,6 +5,7 @@ import com.sushant.spring.mentor_management.entities.Course;
 import com.sushant.spring.mentor_management.entities.Intern;
 import com.sushant.spring.mentor_management.repositories.InternRep;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class InternServiceImpl implements  InternService{
     InternRep internRep ;
     MentorService mentorService;
     PersonService personService;
+
 
     @Autowired
     public InternServiceImpl(InternRep internRep, MentorService mentorService, PersonService personService) {
@@ -31,6 +33,10 @@ public class InternServiceImpl implements  InternService{
 
     @Override
     public Intern create(Intern intern) {
+
+
+
+
         return this.internRep.save(intern);
     }
 

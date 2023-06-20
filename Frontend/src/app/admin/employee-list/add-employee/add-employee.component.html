@@ -1,0 +1,101 @@
+<app-navbar></app-navbar>
+
+<div class="row mt-5 p-5">
+  <div class="col-12">
+    <form #addEmployee="ngForm" (ngSubmit)="onSubmit()">
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <input
+              type="text"
+              id="form6Example1"
+              class="form-control"
+              name="firstName"
+              [(ngModel)]="person.firstName"
+            />
+            <label class="form-label" for="form6Example1">First name</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input
+              type="text"
+              id="form6Example2"
+              class="form-control"
+              name="lastName"
+              [(ngModel)]="person.lastName"
+            />
+            <label class="form-label" for="form6Example2">Last name</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-outline mb-4">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          name="role"
+          [(ngModel)]="person.role"
+        >
+          <option selected>Select Roles</option>
+          <option value="ROLE_INTERN">ROLE_INTERN</option>
+          <option value="ROLE_MENTOR">ROLE_MENTOR</option>
+        </select>
+
+        <label class="form-label" for="form6Example4">Role</label>
+      </div>
+
+      <div *ngIf ="person.role === 'ROLE_INTERN'" class="form-outline mb-4">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          name="role"
+          [(ngModel)]="mentorId"
+        >
+          <option selected>Select Mentor</option>
+          <option *ngFor="let mentor of mentors" [ngValue]="mentor.mentorId">{{mentor.person.firstName}}</option>
+          
+        </select>
+
+        <label class="form-label" for="form6Example4">Mentor</label>
+      </div>
+
+
+
+      <div class="form-outline mb-4">
+        <input
+          type="date"
+          id="form6Example5"
+          class="form-control"
+          name="dateOfBirth"
+          [(ngModel)]="person.dateOfBirth"
+        />
+        <label class="form-label" for="form6Example5">Date Of Birth</label>
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <input
+          type="email"
+          id="form6Example5"
+          class="form-control"
+          name="email"
+          [(ngModel)]="person.email"
+        />
+        <label class="form-label" for="form6Example5">Email</label>
+      </div>
+
+      <!-- Number input -->
+      <div class="form-outline mb-4">
+        <input type="text" id="form6Example6" class="form-control" name="password"
+        [(ngModel)]="person.password"  />
+        <label class="form-label" for="form6Example6">Password</label>
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="btn btn-primary btn-block mb-4">
+        Save Details
+      </button>
+    </form>
+  </div>
+</div>

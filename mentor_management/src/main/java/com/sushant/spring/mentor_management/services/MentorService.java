@@ -9,4 +9,5 @@ public interface MentorService {
     List<Mentor> getAllMentor();
 
     Mentor getMentor(int mentorId);
+    List<Mentor> getRemainingMentor();
 }

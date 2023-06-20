@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Intern from '../model/intern.model';
-import { BehaviorSubject, catchError, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, throwError } from 'rxjs';
 import axios from 'axios';
 import { Router } from '@angular/router';
 import Person from '../model/person.model';
@@ -21,8 +21,9 @@ export class AppService {
         password: model.password,
       });
       sessionStorage.setItem('sessionId', data.data.sessionId);
-      sessionStorage.setItem('email',model.username);
+      sessionStorage.setItem('email', model.username);
       
+
       this.getPerson(model.username).subscribe((res) => {
         this.person = new Person(
           res['id'],
@@ -35,10 +36,11 @@ export class AppService {
           res['address'],
           res['status']
         );
-
-        localStorage.setItem('person', JSON.stringify(this.person));
+      localStorage.setItem('email',this.person.email);
+      localStorage.setItem('role',this.person.role);
+      localStorage.setItem('personId', this.person.id);
       });
-
+      if(this.person.status ==='active')
       this.router.navigate(['../admin/dashboard']);
     } catch (err) {
       console.log(err.message);
@@ -64,13 +66,17 @@ export class AppService {
   }
 
   getPerson(email) {
+
+ 
     return this.http.get<[]>(this.BASIC_URL + 'api/getPerson/' + email);
+    
+
   }
   postPerson(person: Person) {
     return this.http
-      .post(`${this.BASIC_URL}api/person`, person,
-      {
-        observe: 'body', responseType: 'text'
+      .post(`${this.BASIC_URL}api/person`, person, {
+        observe: 'body',
+        responseType: 'text',
       })
       .pipe(
         catchError((err) => {
@@ -80,7 +86,31 @@ export class AppService {
       );
   }
 
-  getAllPersons(){
-   return this.http.get<[]>(this.BASIC_URL+'api/getPerson');
+  getAllPersons() {
+    return this.http.get<[]>(this.BASIC_URL + 'api/getPerson');
+  }
+  getAllMentors(): Observable<any> {
+    return this.http.get<any>(this.BASIC_URL + 'api/getMentor');
+  }
+
+  postIntern(id, mentorId) {
+    return this.http.post<any>(
+      this.BASIC_URL + 'api/changeMentor/' + id,
+      mentorId
+    );
+  }
+  saveIntern(intern) {
+    return this.http.post<any>(this.BASIC_URL + 'api/saveIntern', intern);
+  }
+  saveMentor(mentor) {
+    return this.http.post<any>(this.BASIC_URL + 'api/saveMentor', mentor);
+  }
+
+
+  getRemainingMentors(){
+    return this.http.get<any>(this.BASIC_URL+'api/getRemainingMentors');
+  }
+  getCourseForMentor(id){
+    return this.http.get<any>(this.BASIC_URL+'api/getCourseForMentor/'+id);
   }
 }

@@ -10,6 +10,7 @@ public interface CourseService {
     Course create(Course course);
     List<Course> getAllCourses();
     Course save(CourseDTO courseDTO);
+    List<Course> getCourseForMentor(int id);
     void delete(int id );
 
 }

@@ -52,6 +52,11 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
+    public List<Course> getCourseForMentor(int id) {
+        return courseRep.getCourseForMentor(id);
+    }
+
+    @Override
     public void delete(int id) {
         courseRep.deleteById(id);
     }

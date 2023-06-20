@@ -18,6 +18,7 @@ export class CoursesComponent implements OnInit {
   ind = -1;
   searchWord;
   ngbModalRef: NgbModalRef;
+  userRole;
 
   constructor(
     private appService: AppService,
@@ -29,9 +30,21 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     // this.courses = this.route.snapshot.data['data'];
-    this.appService.getCourses().subscribe((res) => {
-      this.courses = res;
-    });
+    this.userRole = localStorage.getItem('role');
+
+    if (this.userRole === 'ROLE_MENTOR') {
+      const personId = +localStorage.getItem('personId');
+      this.appService.getCourseForMentor(personId).subscribe((res) => {
+        this.courses = res;
+      });
+    }
+
+    // this.appService.getCourseForMentor()}
+    else if (this.userRole === 'ROLE_ADMIN') {
+      this.appService.getCourses().subscribe((res) => {
+        this.courses = res;
+      });
+    }
     this.appService.searchWordSub.subscribe((res) => {
       this.searchWord = res;
     });

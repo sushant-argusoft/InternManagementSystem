@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import com.sushant.spring.mentor_management.security.WebSecurity;
 
 @Getter
 @Setter
@@ -18,6 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "person")
 
 public class Person  {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
@@ -33,7 +36,7 @@ public class Person  {
     @NotNull
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(pattern = "yyyy/MM/dd")
-    @NotBlank(message = "Date of Birth  is mandatory")
+
     @Column(name = "date_of_birth")
     private  String dateOfBirth;
     @Column(name="email", nullable = false, updatable = false, unique=true)
@@ -47,6 +50,8 @@ public class Person  {
 
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id",nullable = true)
     private Address address;
+
+
 }

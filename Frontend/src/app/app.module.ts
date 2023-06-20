@@ -29,6 +29,8 @@ import { FilterPipe } from './helper/filter.pipe';
 import { AccountComponent } from './admin/account/account.component';
 import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
 import { PaginatorComponent } from './shared/paginator/paginator.component';
+import { AddEmployeeComponent } from './admin/employee-list/add-employee/add-employee.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -53,7 +55,8 @@ import { PaginatorComponent } from './shared/paginator/paginator.component';
     FilterPipe,
     AccountComponent,
     EmployeeListComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    AddEmployeeComponent
     
    
   ],
@@ -67,7 +70,12 @@ import { PaginatorComponent } from './shared/paginator/paginator.component';
     FormsModule,
     ReactiveFormsModule,
     ProgressBarModule,
-    ToastModule
+    ToastModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-top-right",
+      preventDuplicates:true,
+      timeOut:2500,
+    })
   ],
   
   providers: [{provide:HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true}],

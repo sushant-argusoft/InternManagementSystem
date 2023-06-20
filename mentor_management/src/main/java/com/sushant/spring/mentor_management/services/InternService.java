@@ -11,4 +11,6 @@ public interface InternService {
     Intern getIntern(int internId);
     Intern save(InternDTO internDTO);
     Intern updateIntern(int id , Intern intern);
+
+
 }

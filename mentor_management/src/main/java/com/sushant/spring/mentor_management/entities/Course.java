@@ -34,10 +34,12 @@ public class Course {
 
     @ManyToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "c_id", referencedColumnName = "c_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Category category;
 
     @ManyToOne()
     @JoinColumn(name = "company_id", referencedColumnName = "company_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     Company company;
 
     @JsonIgnoreProperties({"courses","mentor"})
@@ -47,5 +49,6 @@ public class Course {
             name = "course_enrolled",
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "intern_id"))
+
     List<Intern> interns;
 }

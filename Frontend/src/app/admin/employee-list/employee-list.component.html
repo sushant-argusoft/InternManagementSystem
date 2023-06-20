@@ -1,6 +1,10 @@
 <app-navbar></app-navbar>
+<div>
+<button *ngIf = " userRole === 'ROLE_ADMIN'" class="btn btn-primary mt-3 mx-4"  (click)="onAdd()" >Add Employee</button>
+</div>
 <div class="row mx-3">
-  <div class="col-12 mt-5 mb-3">
+ 
+  <div class="col-12 mt-3 mb-3">
     <div class="card widget-26 p-3">
       <tr class="d-flex justify-content-between">
         <td>
@@ -117,5 +121,6 @@
     </div>
   </div>
 </div>
+
 <app-paginator *ngIf="totalSize" (change)="onChange($event)" [totalSize]="totalSize" [pageSize]="pageSize"></app-paginator>
  

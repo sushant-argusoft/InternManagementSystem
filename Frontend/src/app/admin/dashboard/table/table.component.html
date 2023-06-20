@@ -8,17 +8,29 @@
         <h4 class="card-title">Intern List</h4>
       </div>
       <div class="card-body">
-        <p-table [value]="sliceInternList|filter:searchWord:'Name'" [tableStyle]="{ 'min-width': '50rem' }">
-          <ng-template pTemplate="header">
+        <p-table [value]="sliceInternList|filter:searchWord:'Name'"[tableStyle]="{ 'min-width': '50rem' }">
+          <ng-template pTemplate="header"   >
             <tr>
-              <th *ngFor="let cat of category; let i = index">{{ cat }}</th>
+              <th *ngFor="let cat of category">{{ cat }}</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-intern>
+          <ng-template pTemplate="body" let-i="rowIndex" let-intern>
             <tr>
               <td>{{ intern.Id }}</td>
               <td>{{ intern.Name }}</td>
-              <td [style]="componentStyle()" [attr.contenteditable]="edit" (blur)="onBlur()" (click)="onClick($event)" (dblclick)="onDblClick($event)">{{ intern.Mentor }}</td>
+              <td *ngIf = "!edit"  list="programmingLanguages" [attr.contenteditable]="edit" (blur)="onBlur()" (click)="onClick($event)" (dblclick)="onDblClick($event)">{{ intern.Mentor }}</td>
+            <td  *ngIf="edit" >
+              <input  (change)="saveCode($event)" [attr.value]="intern.Mentor" type="text" list="programmingLanguages">
+              <button class="btn px-2" (click)=" onOptionClick(i)"><i style="color: var(--font-color);" class="bx bx-save"></i></button>
+            </td>  
+              
+              <datalist  id="programmingLanguages">
+                <option *ngFor="let mentor of mentors"[ngValue]="mentor" >{{mentor['person']['firstName'] +' ' +mentor['person']['lastName']}}</option>
+                
+               
+            </datalist>
+              
+              
               <td>{{ intern.Courses }}</td>
               <td>
                 {{ intern.Progress }}

@@ -11,6 +11,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CourseService } from '../../../service/course.service';
 import { AppService } from 'src/app/service/app.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import {  ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-form',
@@ -31,7 +32,8 @@ export class EditFormComponent implements OnInit, OnDestroy {
   constructor(
     private ngbActiveModal: NgbActiveModal,
     private courseService: CourseService,
-    private appService: AppService
+    private appService: AppService,
+    private toastr: ToastrService
   ) {}
   ngOnDestroy(): void {
     this.courseService.course.unsubscribe();
@@ -59,7 +61,7 @@ export class EditFormComponent implements OnInit, OnDestroy {
     if (!this.formGroup.valid) return;
     this.close();
     let formValues = this.formGroup.value;
-    // console.log(formValues);
+    
 
     this.loading = true;
 
@@ -84,15 +86,17 @@ export class EditFormComponent implements OnInit, OnDestroy {
           return el.id == formValues.category;
         });
         console.log(this.course);
+        this.toastr.success("Course added successfully",'Success');
       },
       (err) => {
         this.isSubmitted = false;
+        this.toastr.error( "Error",err.error.message);
       }
     );
   }
   close() {
     this.ngbActiveModal.close();
-    // this.isSubmitted = false;
+    
   }
 
   changeCategory(e) {

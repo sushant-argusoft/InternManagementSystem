@@ -16,8 +16,7 @@ import java.util.List;
 
 @Entity
 @Table(name="intern")
-//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
-//        property = "internId")
+
 public class Intern {
 
 
@@ -27,12 +26,14 @@ public class Intern {
     private int internId;
 
 //    @JsonBackReference
-    @JsonIgnoreProperties("interns")
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "mentor_id" , referencedColumnName = "mentor_id", nullable = true)
+    @JsonIgnoreProperties({"interns"})
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "mentor_id" , referencedColumnName = "mentor_id")
     private Mentor mentor;
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "person_id", referencedColumnName = "person_id",nullable = true)
+
+    @JoinColumn(name = "person_id", referencedColumnName = "person_id")
     private Person person;
 
 

@@ -9,7 +9,7 @@ import { ResolverServiceResolver } from './service/resolver-service.resolver';
 import { EditFormComponent } from './admin/courses/edit-form/edit-form.component';
 import { AccountComponent } from './admin/account/account.component';
 import { EmployeeListComponent } from './admin/employee-list/employee-list.component';
-
+import { AddEmployeeComponent } from './admin/employee-list/add-employee/add-employee.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -31,8 +31,13 @@ const routes: Routes = [
         },
         children: [{ path: 'edit', component: EditFormComponent }],
       },
-      {path: 'account', component: AccountComponent},
-      {path: 'employees', component: EmployeeListComponent}
+      { path: 'account', component: AccountComponent },
+      {
+        path: 'employees',
+        component: EmployeeListComponent,
+        children: [],
+      },
+      { path: 'addEmployee', component: AddEmployeeComponent }
     ],
     canActivate: [AuthenticationGuard],
   },
